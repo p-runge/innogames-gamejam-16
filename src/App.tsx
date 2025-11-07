@@ -1,7 +1,8 @@
 import { Canvas } from "@react-three/fiber";
 import Floor from "./components/floor";
-import Player from "./components/player";
+import God from "./components/god";
 import Obstacle from "./components/obstacle";
+import Player from "./components/player";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Floor position={[0, -1, 1]} />
       <Player position={[0, 0, 4]} />
       <Obstacle position={[0, 0, -4]} />
+      <God />
     </Canvas>
   );
 }
