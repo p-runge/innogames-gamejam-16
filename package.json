@@ -15,10 +15,12 @@
     "@tailwindcss/postcss": "^4.1.17",
     "@tailwindcss/vite": "^4.1.17",
     "@types/three": "^0.181.0",
+    "clsx": "^2.1.1",
     "prettier": "^3.6.2",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "tailwind": "^4.0.0",
+    "tailwind-merge": "^3.3.1",
     "tailwindcss": "^4.1.17",
     "three": "^0.181.0",
     "zustand": "^5.0.8"
