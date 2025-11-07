@@ -1,7 +1,7 @@
 import { Canvas } from "@react-three/fiber";
 import Floor from "./components/floor";
 import God from "./components/god";
-import Obstacle from "./components/obstacle";
+import Map from "./components/map";
 import Player from "./components/player";
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
       <pointLight position={[0, 10, 5]} decay={0} intensity={Math.PI / 2} />
       <Floor position={[0, -1, 1]} />
       <Player position={[0, 0, 4]} />
-      <Obstacle position={[0, 0, -4]} />
+      <Map />
       <God />
     </Canvas>
   );
