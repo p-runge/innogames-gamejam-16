@@ -3,7 +3,7 @@ import Floor from "./components/floor";
 import God from "./components/god";
 import Map from "./components/map";
 import Player from "./components/player";
-import TestUI from "./components/test-ui";
+import ProgressBar from "./components/progress-bar";
 
 function App() {
   return (
@@ -15,7 +15,7 @@ function App() {
       <Player position={[0, 0, 4]} />
       <Map />
       <God />
-      <TestUI />
+      <ProgressBar />
     </Canvas>
   );
 }
