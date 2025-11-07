@@ -1,6 +1,7 @@
 import { Canvas } from "@react-three/fiber";
 import Floor from "./components/floor";
 import God from "./components/god";
+import HealthBar from "./components/health-bar";
 import Map from "./components/map";
 import Player from "./components/player";
 import ProgressBar from "./components/progress-bar";
@@ -16,6 +17,7 @@ function App() {
       <Map />
       <God />
       <ProgressBar />
+      <HealthBar />
     </Canvas>
   );
 }
