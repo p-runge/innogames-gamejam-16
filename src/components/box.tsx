@@ -1,4 +1,3 @@
-import { useFrame } from '@react-three/fiber'
 import { useRef } from 'react'
 import * as THREE from 'three'
 
@@ -11,13 +10,12 @@ export default function Box(props: Props) {
   const meshRef = useRef<THREE.Mesh>(null!)
 
   // Subscribe this component to the render-loop, rotate the mesh every frame
-  useFrame((_state, delta) => (meshRef.current.rotation.x += delta))
+  // useFrame((_state, delta) => (meshRef.current.rotation.x += delta))
 
   return (
     <mesh
       {...props}
       ref={meshRef}
-    // scale={1}
     >
       <boxGeometry args={[1, 1, 1]} />
       <meshStandardMaterial color="orange" />
