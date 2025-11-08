@@ -4,8 +4,24 @@ import type { PowerUpType } from "../components/power-up";
 
 export const MAX_HEALTH = 3;
 
+type Level = {
+  obstacleDistance: number;
+  obstacleCount: number;
+  speed: number;
+};
+type LevelMetric = Record<number, Level>;
+
+export const LEVELS: LevelMetric = {
+  1: { obstacleDistance: 4, obstacleCount: 6, speed: 1 },
+  2: { obstacleDistance: 4.5, obstacleCount: 12, speed: 1.2 },
+  3: { obstacleDistance: 4, obstacleCount: 14, speed: 1.5 },
+  4: { obstacleDistance: 3.5, obstacleCount: 16, speed: 1.8 },
+  5: { obstacleDistance: 3, obstacleCount: 18, speed: 2 },
+};
+
 interface GameState {
-  currentLevel: number;
+  currentLevel: Level | null;
+  _currentLevelIndex: number;
   increaseCurrentLevel: () => void;
   health: number;
   takeDamage: () => void;
@@ -25,9 +41,13 @@ interface GameState {
 }
 
 export const useGame = create<GameState>((set) => ({
-  currentLevel: 0,
+  currentLevel: null,
+  _currentLevelIndex: 0,
   increaseCurrentLevel: () =>
-    set((state) => ({ currentLevel: state.currentLevel + 1 })),
+    set((state) => ({
+      _currentLevelIndex: state._currentLevelIndex + 1,
+      currentLevel: LEVELS[state._currentLevelIndex + 1],
+    })),
   health: MAX_HEALTH,
   takeDamage: () =>
     set((state) => ({

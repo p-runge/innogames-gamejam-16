@@ -10,3 +10,8 @@ export function checkCollision(
     Math.abs(pos1[2] - pos2[2]) < (size1[2] + size2[2]) / 2
   );
 }
+
+export function getRandomItem<T>(array: T[]): T {
+  const randomIndex = Math.floor(Math.random() * array.length);
+  return array[randomIndex];
+}

@@ -22,8 +22,10 @@ export default function Map() {
 
   const setMapZ = useGame((state) => state.setMapZ);
 
+  const currentLevel = useGame((state) => state.currentLevel);
+
   useFrame((_state, delta) => {
-    const newMapZ = meshRef.current.position.z += delta * 3;
+    const newMapZ = meshRef.current.position.z += delta * (currentLevel?.speed ?? 1);
     setMapZ(newMapZ);
 
     const newVisibleObstacles = obstacles.filter(obstacle => (

@@ -5,27 +5,30 @@ import Floor from "../components/floor";
 import God from "../components/god";
 import HealthBar from "../components/health-bar";
 import Map from "../components/map";
+import MatchUI from "../components/match-ui";
 import Player from "../components/player";
 import PowerUpUI from "../components/power-up-ui";
 import ProgressBar from "../components/progress-bar";
 import { useGame } from "../stores/game";
-import MatchUI from "../components/match-ui";
+import { getRandomItem } from "../utils/common";
+
 
 export default function GameScene() {
   const setObstacles = useGame((s) => s.setObstacles);
+  const currentLevel = useGame((s) => s.currentLevel);
 
   useEffect(() => {
-    setObstacles([
-      { z: -2, type: "o-fire" },
-      { z: -6, type: "o-water" },
-      { z: -10, type: "o-leaf" },
-      { z: -16, type: "o-water" },
-      { z: -20, type: "o-leaf" },
-      { z: -24, type: "o-fire" },
-      { z: -32, type: "o-leaf" },
-      { z: -36, type: "o-fire" },
-      { z: -40, type: "o-water" },
-    ]);
+    if (!currentLevel) return;
+
+    const obstacles = [...Array(currentLevel.obstacleCount)].map((_, i) => {
+      return {
+        z: - i * 5
+          // offset before the first obstacle
+          - 4,
+        type: getRandomItem(["o-fire", "o-water", "o-leaf"] as const),
+      };
+    });
+    setObstacles(obstacles);
   }, []);
 
   return (

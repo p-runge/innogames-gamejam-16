@@ -12,8 +12,11 @@ export default function StoryScene(props: StorySceneProps) {
   const increaseLevel = useGame((l) => l.increaseCurrentLevel);
   useEffect(() => {
     const handleKeyDown = () => {
+      if (props.nextScene === "game") {
+        increaseLevel();
+      }
+
       setScene(props.nextScene);
-      increaseLevel();
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => {
