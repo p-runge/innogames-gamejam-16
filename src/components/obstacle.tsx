@@ -17,7 +17,7 @@ export default function Obstacle(props: Props) {
   const playerPosition = useGame((state) => state.playerPosition);
   const mapZ = useGame((state) => state.mapZ);
 
-  const powerUpZPosition = props.position[2] + 1;
+  const powerUpZPosition = props.position[2] + 3;
 
   const powerUpIsAheadOfPlayer = powerUpZPosition + mapZ < playerPosition[2] - playerDimensions[2];
 

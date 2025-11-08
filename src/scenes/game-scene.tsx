@@ -23,7 +23,7 @@ export default function GameScene() {
 
     const obstacles = [...Array(currentLevel.obstacleCount)].map((_, i) => {
       return {
-        z: - i * 5
+        z: - i * currentLevel.obstacleDistance
           // offset before the first obstacle
           - 4,
         type: getRandomItem(["o-fire", "o-water", "o-leaf"] as const),
