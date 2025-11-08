@@ -1,4 +1,4 @@
-import { useGame } from "../store";
+import { useGame } from "../stores/game";
 import PowerUp from "./power-up";
 
 type Props = {

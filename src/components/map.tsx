@@ -1,7 +1,7 @@
 import { useFrame } from "@react-three/fiber";
 import { useRef, useState } from "react";
 import type { Mesh } from "three";
-import { useGame } from "../store";
+import { useGame } from "../stores/game";
 import { checkCollision } from "../utils/common";
 import Obstacle, { DIMENSIONS as obstacleDimensions } from "./obstacle";
 import { DIMENSIONS as playerDimensions } from "./player";

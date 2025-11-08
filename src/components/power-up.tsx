@@ -2,7 +2,7 @@ import { useFrame } from "@react-three/fiber";
 import { useRef, useState } from "react";
 import type { Mesh } from "three";
 import { checkCollision } from "../utils/common";
-import { useGame } from "../store";
+import { useGame } from "../stores/game";
 import { DIMENSIONS as playerDimensions } from "./player";
 
 export type PowerUpType = "fire" | "water" | "leaf";

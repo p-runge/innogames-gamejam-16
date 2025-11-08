@@ -1,5 +1,5 @@
 import { Html } from "@react-three/drei";
-import { useGame } from "../store";
+import { useGame } from "../stores/game";
 
 export default function PowerUpUI() {
   const powerUp = useGame((s) => s.powerUp);

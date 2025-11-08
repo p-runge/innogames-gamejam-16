@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import GameScene from '../scenes/game-scene'
-import { useGame } from '../store'
+import { useGame } from '../stores/game'
 import { useScene, type SceneType } from '../stores/scene'
 
 export function SceneManager() {
