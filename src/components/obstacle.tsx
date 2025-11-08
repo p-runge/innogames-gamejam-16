@@ -1,5 +1,6 @@
 import { useGame } from "../stores/game";
 import PowerUp from "./power-up";
+import { DIMENSIONS as playerDimensions } from "./player";
 
 type Props = {
   position: [number, number, number];
@@ -10,6 +11,12 @@ export const DIMENSIONS: [number, number, number] = [5, 1, 1];
 
 export default function Obstacle(props: Props) {
   const powerUp = useGame((state) => state.powerUp);
+  const playerPosition = useGame((state) => state.playerPosition);
+  const mapZ = useGame((state) => state.mapZ);
+
+  const powerUpZPosition = props.position[2] + 1;
+
+  const powerUpIsAheadOfPlayer = powerUpZPosition + mapZ < playerPosition[2] - playerDimensions[2];
 
   return (
     <>
@@ -22,9 +29,12 @@ export default function Obstacle(props: Props) {
        * Generally don't render power-ups if player has the corresponding power
        * to prevent needing to track all power ups in the game store.
        */}
-      {powerUp !== "fire" && <PowerUp type="fire" position={[props.position[0] - 1.5, props.position[1], props.position[2] + 1]} />}
-      {powerUp !== "water" && <PowerUp type="water" position={[props.position[0], props.position[1], props.position[2] + 1]} />}
-      {powerUp !== "leaf" && <PowerUp type="leaf" position={[props.position[0] + 1.5, props.position[1], props.position[2] + 1]} />}
+      {(powerUpIsAheadOfPlayer || (!powerUp && powerUpZPosition + mapZ < playerPosition[2])) && (
+        <>
+          <PowerUp type="fire" position={[props.position[0] - 1.5, props.position[1], powerUpZPosition]} />
+          <PowerUp type="water" position={[props.position[0], props.position[1], powerUpZPosition]} />
+          <PowerUp type="leaf" position={[props.position[0] + 1.5, props.position[1], powerUpZPosition]} />
+        </>)}
     </>
   );
 }

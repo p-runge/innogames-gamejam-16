@@ -27,6 +27,7 @@ export default function Map() {
   const [collidedObstacles, setCollidedObstacles] = useState<Set<number>>(new Set());
   const playerPosition = useGame((state) => state.playerPosition);
   const takeDamage = useGame((state) => state.takeDamage);
+  const setPowerUp = useGame((state) => state.setPowerUp);
 
   const setMapZ = useGame((state) => state.setMapZ);
 
@@ -50,6 +51,7 @@ export default function Map() {
 
       if (checkCollision(playerPosition, playerDimensions, obstaclePosition, obstacleDimensions)) {
         if (!collidedObstacles.has(index)) {
+          setPowerUp(null);
           takeDamage();
           setCollidedObstacles(prev => new Set(prev).add(index));
         }
