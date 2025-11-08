@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import type { ObstacleType } from "../components/obstacle";
 import type { PowerUpType } from "../components/power-up";
+import { getRandomItem } from "../utils/common";
 
 export const MAX_HEALTH = 3;
 
@@ -111,22 +112,23 @@ export const useGame = create<GameState>((set) => ({
   },
   randomizePowerUpObstacleMap: () =>
     set(() => {
-      const obstacleTypes: ObstacleType[] = ["o-fire", "o-water", "o-leaf"];
+      // Generate a random permutation by selecting a random valid arrangement
+      // There are 6 possible permutations, we want any except the initial one
+      const validPermutations: ObstacleType[][] = [
+        ["o-fire", "o-leaf", "o-water"],
+        ["o-water", "o-fire", "o-leaf"],
+        ["o-water", "o-leaf", "o-fire"],
+        ["o-leaf", "o-fire", "o-water"],
+        ["o-leaf", "o-water", "o-fire"],
+      ];
 
-      // Shuffle obstacle types
-      for (let i = obstacleTypes.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [obstacleTypes[i], obstacleTypes[j]] = [
-          obstacleTypes[j],
-          obstacleTypes[i],
-        ];
-      }
+      const shuffled = getRandomItem(validPermutations);
 
       return {
         powerUpObstacleMap: {
-          "p-fire": obstacleTypes[0],
-          "p-water": obstacleTypes[1],
-          "p-leaf": obstacleTypes[2],
+          "p-fire": shuffled[0],
+          "p-water": shuffled[1],
+          "p-leaf": shuffled[2],
         },
       };
     }),
