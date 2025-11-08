@@ -49,8 +49,8 @@ export default function PowerUp(props: Props) {
       <sphereGeometry args={[RADIUS, 32, 32]} />
       <meshStandardMaterial color={
         props.type === "fire" ? "darkred" :
-          props.type === "water" ? "blue" :
-            "green"
+          props.type === "water" ? "darkblue" :
+            "darkgreen"
       } />
     </mesh>
   );

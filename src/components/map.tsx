@@ -3,31 +3,34 @@ import { useRef, useState } from "react";
 import type { Mesh } from "three";
 import { useGame } from "../stores/game";
 import { checkCollision } from "../utils/common";
-import Obstacle, { DIMENSIONS as obstacleDimensions } from "./obstacle";
+import Obstacle, { DIMENSIONS as obstacleDimensions, type ObstacleType } from "./obstacle";
 import { DIMENSIONS as playerDimensions } from "./player";
 
 export default function Map() {
-  const obstaclesZ: number[] = [
-    0,
-    -2,
-    -6,
-    -8,
-    -12,
-    -14,
-    -18,
-    -20,
-    -24,
-    -26,
-    -30,
-  ];
+  const obstacles: {
+    z: number;
+    type: ObstacleType
+  }[] = [
+      { z: 0, type: "fire" },
+      { z: -4, type: "water" },
+      { z: -8, type: "leaf" },
+      { z: -12, type: "fire" },
+      { z: -16, type: "water" },
+      { z: -20, type: "leaf" },
+      { z: -24, type: "fire" },
+      { z: -28, type: "water" },
+      { z: -32, type: "leaf" },
+    ];
+
 
   const meshRef = useRef<Mesh>(null!);
 
-  const [visibleObstacles, setVisibleObstacles] = useState<number[]>([]);
+  const [visibleObstacles, setVisibleObstacles] = useState<typeof obstacles>([]);
   const [collidedObstacles, setCollidedObstacles] = useState<Set<number>>(new Set());
   const playerPosition = useGame((state) => state.playerPosition);
   const takeDamage = useGame((state) => state.takeDamage);
   const setPowerUp = useGame((state) => state.setPowerUp);
+  const powerUp = useGame((state) => state.powerUp);
 
   const setMapZ = useGame((state) => state.setMapZ);
 
@@ -35,25 +38,28 @@ export default function Map() {
     const newMapZ = meshRef.current.position.z += delta;
     setMapZ(newMapZ);
 
-    const newVisibleObstacles = obstaclesZ.filter(z => (
+    const newVisibleObstacles = obstacles.filter(obstacle => (
       // only show obstacles that are near the player
-      z + newMapZ > -4 &&
+      obstacle.z + newMapZ > -4 &&
       // don't show obstacles that are out of view behind the player
-      z + newMapZ < 7
+      obstacle.z + newMapZ < 7
     ));
 
     setVisibleObstacles(newVisibleObstacles);
 
     // Check collisions
-    newVisibleObstacles.forEach((z, index) => {
-      const obstacleWorldZ = z + meshRef.current.position.z;
+    newVisibleObstacles.forEach((obstacle, index) => {
+      const obstacleWorldZ = obstacle.z + meshRef.current.position.z;
       const obstaclePosition: [number, number, number] = [0, 0, obstacleWorldZ];
 
       if (checkCollision(playerPosition, playerDimensions, obstaclePosition, obstacleDimensions)) {
         if (!collidedObstacles.has(index)) {
           setPowerUp(null);
-          takeDamage();
           setCollidedObstacles(prev => new Set(prev).add(index));
+
+          if (powerUp !== obstacle.type) {
+            takeDamage();
+          }
         }
       } else {
         // Reset collision state when no longer colliding
@@ -70,8 +76,8 @@ export default function Map() {
 
   return (
     <mesh ref={meshRef}>
-      {visibleObstacles.map((z, index) => (
-        <Obstacle key={index} position={[0, 0, z]} />
+      {visibleObstacles.map((obstacle, index) => (
+        <Obstacle key={index} position={[0, 0, obstacle.z]} type={obstacle.type} />
       ))}
     </mesh>
   )

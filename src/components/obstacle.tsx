@@ -2,7 +2,10 @@ import { useGame } from "../stores/game";
 import PowerUp from "./power-up";
 import { DIMENSIONS as playerDimensions } from "./player";
 
+export type ObstacleType = "fire" | "water" | "leaf";
+
 type Props = {
+  type: ObstacleType;
   position: [number, number, number];
 };
 
@@ -22,7 +25,9 @@ export default function Obstacle(props: Props) {
     <>
       <mesh {...props}>
         <boxGeometry args={DIMENSIONS} />
-        <meshStandardMaterial color="red" />
+        <meshStandardMaterial color={
+          props.type === "fire" ? "red" : props.type === "water" ? "blue" : "green"
+        } />
       </mesh>
 
       {/**

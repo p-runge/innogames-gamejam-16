@@ -9,7 +9,7 @@ export default function Player() {
   return (
     <mesh position={playerPosition}>
       <boxGeometry args={DIMENSIONS} />
-      <meshStandardMaterial color="green" />
+      <meshStandardMaterial color="hotpink" />
     </mesh>
   );
 }
