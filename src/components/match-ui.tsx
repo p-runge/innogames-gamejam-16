@@ -2,6 +2,7 @@ import { Html } from "@react-three/drei";
 import { useGame } from "../stores/game";
 import type { ObstacleType } from "./obstacle";
 import type { PowerUpType } from "./power-up";
+import { cn } from "../utils";
 
 export default function MatchUI() {
   const powerUpObstacleMap = useGame((state) => state.powerUpObstacleMap);
@@ -24,29 +25,21 @@ export default function MatchUI() {
 }
 
 function ObstacleIcon({ type }: { type: ObstacleType }) {
-  const icon = {
-    "o-fire": "🔥",
-    "o-water": "💧",
-    "o-leaf": "🍃",
-  }[type];
-
   return (
-    <span className="text-4xl">
-      {icon}
-    </span>
+    <div className={cn("w-8 h-4", {
+      "bg-red-500": type === "o-fire",
+      "bg-blue-500": type === "o-water",
+      "bg-green-500": type === "o-leaf",
+    })} />
   );
 }
 
 function PowerUpIcon({ type }: { type: PowerUpType }) {
-  const icon = {
-    "p-fire": "🔥",
-    "p-water": "💧",
-    "p-leaf": "🍃",
-  }[type];
-
   return (
-    <span className="text-4xl">
-      {icon}
-    </span>
+    <div className={cn("text-4xl rounded-full w-4 h-4", {
+      "bg-red-700": type === "p-fire",
+      "bg-blue-700": type === "p-water",
+      "bg-green-700": type === "p-leaf",
+    })} />
   );
 }
