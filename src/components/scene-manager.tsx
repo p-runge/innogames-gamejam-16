@@ -92,8 +92,13 @@ const sceneMap: Record<SceneType, React.FC> = {
   win2: () => <StoryScene
     imgSrc="" dialog="Thanks for playing" nextScene="menu" />,
   lose1: Lose1Scene,
-  lose2: () => <StoryScene
-    imgSrc="" dialog="Better luck next time!" nextScene="menu" />,
+  lose2: () => (
+    <StoryScene
+      imgSrc="/god-sad.png"
+      dialog="I see, you failed your quest. Good thing this is not real life, so you can just move your dead ass out there and try again."
+      nextScene="menu"
+    />
+  ),
 };
 
 
