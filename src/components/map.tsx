@@ -18,6 +18,7 @@ export default function Map() {
   const setPowerUp = useGame((state) => state.setPowerUp);
   const powerUp = useGame((state) => state.powerUp);
   const powerUpObstacleMap = useGame((state) => state.powerUpObstacleMap);
+  const randomizePowerUpObstacleMap = useGame((state) => state.randomizePowerUpObstacleMap);
 
   const setMapZ = useGame((state) => state.setMapZ);
 
@@ -42,6 +43,7 @@ export default function Map() {
       if (checkCollision(playerPosition, playerDimensions, obstaclePosition, obstacleDimensions)) {
         if (!collidedObstacles.has(index)) {
           setPowerUp(null);
+          randomizePowerUpObstacleMap();
           setCollidedObstacles(prev => new Set(prev).add(index));
 
           if (!powerUp || powerUpObstacleMap[powerUp] !== obstacle.type) {
