@@ -25,7 +25,6 @@ export default function GameScene() {
       { z: -36, type: "fire" },
       { z: -40, type: "water" },
     ]);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

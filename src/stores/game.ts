@@ -1,6 +1,6 @@
 import { create } from "zustand";
-import type { PowerUpType } from "../components/power-up";
 import type { ObstacleType } from "../components/obstacle";
+import type { PowerUpType } from "../components/power-up";
 
 export const MAX_HEALTH = 3;
 
