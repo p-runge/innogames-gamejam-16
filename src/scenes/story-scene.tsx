@@ -9,6 +9,7 @@ type StorySceneProps = {
 export default function StoryScene(props: StorySceneProps) {
   const setScene = useScene((s) => s.setScene);
   const increaseLevel = useGame((l) => l.increaseCurrentLevel);
+  const currentLevel = useGame((c) => c.currentLevel);
   useEffect(() => {
     const handleKeyDown = () => {
       setScene("game");
@@ -21,12 +22,14 @@ export default function StoryScene(props: StorySceneProps) {
   }, []);
 
   return (
-    <div>
-      <div className="flex">
+    <div className="h-full p-8 flex flex-col justify-around">
+      <div className="flex flex-col gap-8 items-center">
         <div>Image</div>
-        <div>{props.dialog}</div>
+        <div className="text-xl">{props.dialog[currentLevel]}</div>
       </div>
-      <div>Press any key to continue your journey</div>
+      <div className="text-center text-2xl font-bold">
+        Press any key to continue your journey
+      </div>
     </div>
   );
 }
