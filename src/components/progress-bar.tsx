@@ -38,7 +38,7 @@ export default function ProgressBar() {
           nextScene = "level-3-review";
           break;
         default:
-          nextScene = "win";
+          nextScene = "win1";
       }
       setScene(nextScene);
     }
