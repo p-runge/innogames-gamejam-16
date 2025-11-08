@@ -3,26 +3,11 @@ import { useRef, useState } from "react";
 import type { Mesh } from "three";
 import { useGame } from "../stores/game";
 import { checkCollision } from "../utils/common";
-import Obstacle, { DIMENSIONS as obstacleDimensions, type ObstacleType } from "./obstacle";
+import Obstacle, { DIMENSIONS as obstacleDimensions } from "./obstacle";
 import { DIMENSIONS as playerDimensions } from "./player";
 
 export default function Map() {
-  const obstacles: {
-    z: number;
-    type: ObstacleType
-  }[] = [
-      { z: -4, type: "water" },
-      { z: -8, type: "leaf" },
-      { z: -12, type: "fire" },
-      { z: -16, type: "water" },
-      { z: -20, type: "leaf" },
-      { z: -24, type: "fire" },
-      { z: -28, type: "water" },
-      { z: -32, type: "leaf" },
-      { z: -36, type: "fire" },
-      { z: -40, type: "water" },
-    ];
-
+  const obstacles = useGame((state) => state.obstacles);
 
   const meshRef = useRef<Mesh>(null!);
 

@@ -1,4 +1,6 @@
 import { Canvas } from "@react-three/fiber";
+import { useEffect } from "react";
+import Controls from "../components/controls";
 import Floor from "../components/floor";
 import God from "../components/god";
 import HealthBar from "../components/health-bar";
@@ -6,9 +8,26 @@ import Map from "../components/map";
 import Player from "../components/player";
 import PowerUpUI from "../components/power-up-ui";
 import ProgressBar from "../components/progress-bar";
-import Controls from "../components/controls";
+import { useGame } from "../stores/game";
 
 export default function GameScene() {
+  const setObstacles = useGame((s) => s.setObstacles);
+
+  useEffect(() => {
+    setObstacles([
+      { z: -2, type: "fire" },
+      { z: -6, type: "water" },
+      { z: -10, type: "leaf" },
+      { z: -16, type: "water" },
+      { z: -20, type: "leaf" },
+      { z: -24, type: "fire" },
+      { z: -32, type: "leaf" },
+      { z: -36, type: "fire" },
+      { z: -40, type: "water" },
+    ]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <Canvas camera={{ position: [0, 5, 10], fov: 50 }}>
       <Controls />

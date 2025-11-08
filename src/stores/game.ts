@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import type { PowerUpType } from "../components/power-up";
+import type { ObstacleType } from "../components/obstacle";
 
 export const MAX_HEALTH = 3;
 
@@ -14,6 +15,11 @@ interface GameState {
   setPowerUp: (type: PowerUpType | null) => void;
   mapZ: number;
   setMapZ: (z: number) => void;
+  obstacles: {
+    z: number;
+    type: ObstacleType;
+  }[];
+  setObstacles: (obstacles: { z: number; type: ObstacleType }[]) => void;
 }
 
 export const useGame = create<GameState>((set) => ({
@@ -34,4 +40,6 @@ export const useGame = create<GameState>((set) => ({
   },
   mapZ: 0,
   setMapZ: (z) => set({ mapZ: z }),
+  obstacles: [],
+  setObstacles: (obstacles) => set({ obstacles }),
 }));

@@ -1,17 +1,22 @@
 import { Html } from "@react-three/drei";
-import { useFrame } from "@react-three/fiber";
-import { useState } from "react";
+import { useGame } from "../stores/game";
 
-const STAGE_DURATION = 60;
+const MAP_END_OFFSET = 4;
 
 export default function ProgressBar() {
-  const [timeprogress, setTimeProgress] = useState(0);
+  const mapZ = useGame((s) => s.mapZ);
+  const obstacles = useGame((s) => s.obstacles);
 
-  const progress = Math.min(timeprogress / STAGE_DURATION * 100, 100)
+  const playerPosition = useGame((s) => s.playerPosition);
 
-  useFrame((state) => {
-    setTimeProgress(state.clock.getElapsedTime());
-  });
+  const lastObstacleZ = Math.min(0, ...obstacles.map((o) => o.z))
+  const mapLength = Math.abs(lastObstacleZ) + MAP_END_OFFSET;
+
+  const playerStartPositionToMapStartDistance = Math.abs(playerPosition[2]);
+
+  const progress = Math.min(100,
+    Math.max(0, 100 / (mapLength + playerStartPositionToMapStartDistance) * mapZ)
+  );
 
   return (
     <Html position={[2, 1, 0]} center>
