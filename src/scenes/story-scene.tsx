@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import { useScene, type SceneType } from "../stores/scene";
 import { useGame } from "../stores/game";
+import { useScene, type SceneType } from "../stores/scene";
 
 type StorySceneProps = {
   imgSrc: string;
@@ -12,12 +12,14 @@ export default function StoryScene(props: StorySceneProps) {
   const setScene = useScene((s) => s.setScene);
   const increaseLevel = useGame((l) => l.increaseCurrentLevel);
   useEffect(() => {
-    const handleKeyDown = () => {
-      if (props.nextScene === "game") {
-        increaseLevel();
-      }
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.code === "Space") {
+        if (props.nextScene === "game") {
+          increaseLevel();
+        }
 
-      setScene(props.nextScene);
+        setScene(props.nextScene);
+      }
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => {
@@ -31,8 +33,8 @@ export default function StoryScene(props: StorySceneProps) {
         <img src={props.imgSrc} className="w-64 h-64 object-cover" />
         <div className="text-xl grow">{props.dialog}</div>
       </div>
-      <div className="text-center text-2xl font-bold absolute bottom-8">
-        Press any key to continue your journey
+      <div className="text-center text-2xl font-bold absolute bottom-8 left-0 right-0 animate-bounce">
+        {"Press <Space> to continue"}
       </div>
     </div>
   );
