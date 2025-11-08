@@ -42,7 +42,6 @@ body,
   -moz-osx-font-smoothing: grayscale;
 }
 
-img {
-  /* pixelated */
+* {
   image-rendering: pixelated;
 }
