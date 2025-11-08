@@ -10,6 +10,8 @@ interface GameState {
   setPlayerPosition: (position: [number, number, number]) => void;
   powerUp: PowerUpType | null;
   setPowerUp: (type: PowerUpType | null) => void;
+  mapZ: number;
+  setMapZ: (z: number) => void;
 }
 
 export const useGame = create<GameState>((set) => ({
@@ -25,4 +27,6 @@ export const useGame = create<GameState>((set) => ({
     console.log("Power-up collected:", type);
     return set({ powerUp: type });
   },
+  mapZ: 0,
+  setMapZ: (z) => set({ mapZ: z }),
 }));

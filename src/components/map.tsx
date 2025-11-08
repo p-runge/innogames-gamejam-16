@@ -8,7 +8,7 @@ import { DIMENSIONS as playerDimensions } from "./player";
 
 export default function Map() {
   const obstaclesZ: number[] = [
-    2,
+    0,
     -2,
     -6,
     -8,
@@ -28,14 +28,17 @@ export default function Map() {
   const playerPosition = useGame((state) => state.playerPosition);
   const takeDamage = useGame((state) => state.takeDamage);
 
+  const setMapZ = useGame((state) => state.setMapZ);
+
   useFrame((_state, delta) => {
-    meshRef.current.position.z += delta;
+    const newMapZ = meshRef.current.position.z += delta;
+    setMapZ(newMapZ);
 
     const newVisibleObstacles = obstaclesZ.filter(z => (
       // only show obstacles that are near the player
-      z + meshRef.current.position.z > -4 &&
+      z + newMapZ > -4 &&
       // don't show obstacles that are out of view behind the player
-      z + meshRef.current.position.z < 7
+      z + newMapZ < 7
     ));
 
     setVisibleObstacles(newVisibleObstacles);
