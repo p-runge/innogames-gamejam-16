@@ -11,7 +11,6 @@ export default function Map() {
     z: number;
     type: ObstacleType
   }[] = [
-      { z: 0, type: "fire" },
       { z: -4, type: "water" },
       { z: -8, type: "leaf" },
       { z: -12, type: "fire" },
@@ -20,6 +19,8 @@ export default function Map() {
       { z: -24, type: "fire" },
       { z: -28, type: "water" },
       { z: -32, type: "leaf" },
+      { z: -36, type: "fire" },
+      { z: -40, type: "water" },
     ];
 
 
@@ -35,7 +36,7 @@ export default function Map() {
   const setMapZ = useGame((state) => state.setMapZ);
 
   useFrame((_state, delta) => {
-    const newMapZ = meshRef.current.position.z += delta;
+    const newMapZ = meshRef.current.position.z += delta * 3;
     setMapZ(newMapZ);
 
     const newVisibleObstacles = obstacles.filter(obstacle => (
