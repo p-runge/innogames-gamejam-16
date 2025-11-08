@@ -5,7 +5,7 @@ export default function MenuScene() {
   const setScene = useScene((s) => s.setScene);
   useEffect(() => {
     const handleKeyDown = () => {
-      setScene("story");
+      setScene("intro1");
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => {

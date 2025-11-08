@@ -1,6 +1,16 @@
 import { create } from "zustand";
 
-export type SceneType = "menu" | "story" | "game" | "win" | "lose";
+export type SceneType =
+  | "menu"
+  | "intro1"
+  | "intro2"
+  | "intro3"
+  | "intro4"
+  | "story"
+  | "game"
+  | "win"
+  | "lose"
+  | "end";
 
 type Scene = {
   currentScene: SceneType;
