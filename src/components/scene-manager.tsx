@@ -58,24 +58,37 @@ const sceneMap: Record<SceneType, React.FC> = {
   ),
   game: GameScene,
   "level-1-review": () => (
-    <StoryScene dialog={"Level 1 Success"} nextScene="game" />
+    <StoryScene
+      dialog={
+        "You did it! These were your first successful steps on the ladder leading to a delicious Mettbrötchen. But be aware, there are many more dangers awaiting you.."
+      }
+      nextScene="game"
+    />
   ),
   "level-2-review": () => (
-    <StoryScene dialog={"Level 2 Success"} nextScene="game" />
+    <StoryScene
+      dialog={
+        "Ah nice, you found the butter. Go, put it on your bread and move on. We have no time to lose."
+      }
+      nextScene="game"
+    />
   ),
   "level-3-review": () => (
-    <StoryScene dialog={"Level 3 Success"} nextScene="game" />
+    <StoryScene
+      dialog={
+        "The heart of our dish. Ah, i love that smell. This is by far the most important ingredient, so make sure to have enough of it on your slice. But there is still one more important thing to add.."
+      }
+      nextScene="game"
+    />
   ),
   lose1: () => {
     const resetGame = useGame((s) => s.resetGame);
 
     useEffect(() => {
       resetGame();
-    }, [])
+    }, []);
 
-    return (
-      <StoryScene dialog="..." nextScene="lose2" />
-    )
+    return <StoryScene dialog="..." nextScene="lose2" />;
   },
   lose2: () => (
     <StoryScene
@@ -88,14 +101,14 @@ const sceneMap: Record<SceneType, React.FC> = {
 
     useEffect(() => {
       resetGame();
-    }, [])
+    }, []);
 
     return (
       <StoryScene
-        dialog="Finally… You did it! Now it is time to earn your reward. Come and share some of these delicious Mettbrötchen with me. Your service will never be forgotten."
+        dialog="Finally… You did it! Now it is time to earn your reward. Add those onions and then share some of these delicious Mettbrötchen with me. Your service will never be forgotten."
         nextScene="win2"
       />
-    )
+    );
   },
   win2: () => <StoryScene dialog="Thanks for playing" nextScene="menu" />,
 };
