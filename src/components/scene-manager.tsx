@@ -57,34 +57,15 @@ const sceneMap: Record<SceneType, React.FC> = {
     />
   ),
   game: GameScene,
-<<<<<<< HEAD
   "level-1-review": () => (
-    <StoryScene
-      dialog={
-        "Well done! You made it through the first level. The journey is far from over, keep going to collect all ingredients for the perfect Mettbrotchen!"
-      }
-      nextScene="game"
-    />
+    <StoryScene dialog={"Level 1 Success"} nextScene="game" />
   ),
   "level-2-review": () => (
-    <StoryScene
-      dialog={
-        "Great job reaching this point! You're halfway through collecting all the ingredients. Stay focused and continue your quest for the ultimate Mettbrotchen!"
-      }
-      nextScene="game"
-    />
+    <StoryScene dialog={"Level 2 Success"} nextScene="game" />
   ),
   "level-3-review": () => (
-    <StoryScene
-      dialog={
-        "Fantastic! You've gathered most of the ingredients. Just a little more effort and you'll have everything needed for the perfect Mettbrotchen. Keep it up!"
-      }
-      nextScene="game"
-    />
+    <StoryScene dialog={"Level 3 Success"} nextScene="game" />
   ),
-  lose: () => <div>Game Over</div>,
-  win: () => <div>You won!</div>,
-=======
   lose1: () => <StoryScene dialog="..." nextScene="lose2" />,
   lose2: () => (
     <StoryScene
@@ -99,5 +80,4 @@ const sceneMap: Record<SceneType, React.FC> = {
     />
   ),
   win2: () => <StoryScene dialog="Thanks for playing" nextScene="menu" />,
->>>>>>> 9ed0334 (add winning and losing texts)
 };
