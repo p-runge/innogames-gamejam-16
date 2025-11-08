@@ -8,12 +8,25 @@ type Level = {
   obstacleDistance: number;
   obstacleCount: number;
   speed: number;
+  instruction?: string;
 };
 type LevelMetric = Record<number, Level>;
 
 export const LEVELS: LevelMetric = {
-  1: { obstacleDistance: 4, obstacleCount: 6, speed: 1 },
-  2: { obstacleDistance: 4.5, obstacleCount: 12, speed: 1.2 },
+  1: {
+    obstacleDistance: 4,
+    obstacleCount: 6,
+    speed: 1,
+    instruction:
+      "You need to break through the obstacles in your way! Collect the matching power-up to do so.",
+  },
+  2: {
+    obstacleDistance: 4.5,
+    obstacleCount: 12,
+    speed: 1.2,
+    instruction:
+      "Watch out! The required power-ups might change from here on. Make sure to pay attention on what power-up you'll need!",
+  },
   3: { obstacleDistance: 4, obstacleCount: 14, speed: 1.5 },
   4: { obstacleDistance: 3.5, obstacleCount: 16, speed: 1.8 },
   5: { obstacleDistance: 3, obstacleCount: 18, speed: 2 },
