@@ -18,7 +18,7 @@ export const LEVELS: LevelMetric = {
     obstacleCount: 6,
     speed: 1,
     instruction:
-      "You need to break through the obstacles in your way! Collect the matching power-up to do so.",
+      "You need to break through the obstacles in your way! Collect the matching power-up to do so. You can move around with \u2190 and \u2192.",
   },
   2: {
     obstacleDistance: 4.5,
@@ -52,6 +52,9 @@ interface GameState {
   powerUpObstacleMap: Record<PowerUpType, ObstacleType>;
   randomizePowerUpObstacleMap: () => void;
   resetGame: () => void;
+
+  isPaused: boolean;
+  setIsPaused: (paused: boolean) => void;
 }
 
 export const useGame = create<GameState>((set) => ({
@@ -119,4 +122,8 @@ export const useGame = create<GameState>((set) => ({
         "p-leaf": "o-leaf",
       },
     })),
+
+  isPaused: false,
+  setIsPaused: (paused) => set({ isPaused: paused }),
+  hasTriggeredInitialPause: false,
 }));

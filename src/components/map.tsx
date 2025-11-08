@@ -21,11 +21,16 @@ export default function Map() {
   const randomizePowerUpObstacleMap = useGame((state) => state.randomizePowerUpObstacleMap);
 
   const setMapZ = useGame((state) => state.setMapZ);
+  const isPaused = useGame((state) => state.isPaused);
 
   const currentLevel = useGame((state) => state.currentLevel);
   const currentLevelIndex = useGame((s) => s.currentLevelIndex);
 
   useFrame((_state, delta) => {
+    if (isPaused) {
+      return;
+    }
+
     const newMapZ = meshRef.current.position.z += delta * (currentLevel?.speed ?? 1);
     setMapZ(newMapZ);
 
