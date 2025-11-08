@@ -3,6 +3,7 @@ import GameScene from "../scenes/game-scene";
 import { useGame } from "../stores/game";
 import { useScene, type SceneType } from "../stores/scene";
 import MenuScene from "../scenes/menu-scene";
+import StoryScene from "../scenes/story-scene";
 
 export function SceneManager() {
   const currentScene = useScene((s) => s.currentScene);
@@ -23,6 +24,9 @@ export function SceneManager() {
 
 const sceneMap: Record<SceneType, React.FC> = {
   menu: MenuScene,
+  story: () => (
+    <StoryScene dialog={["Test Text 1", "Test Text 2", "Test Text 3"]} />
+  ),
   game: GameScene,
   end: () => <div>End Scene</div>,
 };

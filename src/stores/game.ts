@@ -4,6 +4,8 @@ import type { PowerUpType } from "../components/power-up";
 export const MAX_HEALTH = 3;
 
 interface GameState {
+  currentLevel: number;
+  increaseCurrentLevel: () => void;
   health: number;
   takeDamage: () => void;
   playerPosition: [number, number, number];
@@ -15,6 +17,9 @@ interface GameState {
 }
 
 export const useGame = create<GameState>((set) => ({
+  currentLevel: 0,
+  increaseCurrentLevel: () =>
+    set((state) => ({ currentLevel: state.currentLevel + 1 })),
   health: MAX_HEALTH,
   takeDamage: () =>
     set((state) => ({
