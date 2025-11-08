@@ -1,7 +1,7 @@
 import { Html } from "@react-three/drei";
 import { useEffect } from "react";
 import { useGame } from "../stores/game";
-import { useScene } from "../stores/scene";
+import { useScene, type SceneType } from "../stores/scene";
 
 const MAP_END_OFFSET = 4;
 
@@ -9,6 +9,7 @@ export default function ProgressBar() {
   const mapZ = useGame((s) => s.mapZ);
   const obstacles = useGame((s) => s.obstacles);
   const playerPosition = useGame((s) => s.playerPosition);
+  const currentLevelIndex = useGame((s) => s.currentLevelIndex);
 
   const setScene = useScene((s) => s.setScene);
 
@@ -24,8 +25,22 @@ export default function ProgressBar() {
   const isDone = progress >= 100;
 
   useEffect(() => {
+    let nextScene: SceneType
     if (isDone) {
-      setScene("win");
+      switch (currentLevelIndex) {
+        case 1:
+          nextScene = "level-1-review";
+          break;
+        case 2:
+          nextScene = "level-2-review";
+          break;
+        case 3:
+          nextScene = "level-3-review";
+          break;
+        default:
+          nextScene = "win";
+      }
+      setScene(nextScene);
     }
   }, [isDone])
 

@@ -7,6 +7,9 @@ export type SceneType =
   | "intro3"
   | "intro4"
   | "game"
+  | "level-1-review"
+  | "level-2-review"
+  | "level-3-review"
   | "win"
   | "lose";
 

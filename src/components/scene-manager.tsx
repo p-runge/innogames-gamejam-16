@@ -57,6 +57,30 @@ const sceneMap: Record<SceneType, React.FC> = {
     />
   ),
   game: GameScene,
+  "level-1-review": () => (
+    <StoryScene
+      dialog={
+        "Well done! You made it through the first level. The journey is far from over, keep going to collect all ingredients for the perfect Mettbrotchen!"
+      }
+      nextScene="game"
+    />
+  ),
+  "level-2-review": () => (
+    <StoryScene
+      dialog={
+        "Great job reaching this point! You're halfway through collecting all the ingredients. Stay focused and continue your quest for the ultimate Mettbrotchen!"
+      }
+      nextScene="game"
+    />
+  ),
+  "level-3-review": () => (
+    <StoryScene
+      dialog={
+        "Fantastic! You've gathered most of the ingredients. Just a little more effort and you'll have everything needed for the perfect Mettbrotchen. Keep it up!"
+      }
+      nextScene="game"
+    />
+  ),
   lose: () => <div>Game Over</div>,
   win: () => <div>You won!</div>,
 };
