@@ -7,7 +7,6 @@ import HealthBar from "../components/health-bar";
 import Map from "../components/map";
 import MatchUI from "../components/match-ui";
 import Player from "../components/player";
-import PowerUpUI from "../components/power-up-ui";
 import ProgressBar from "../components/progress-bar";
 import { useGame } from "../stores/game";
 import { getRandomItem } from "../utils/common";
@@ -23,7 +22,7 @@ export default function GameScene() {
 
     const obstacles = [...Array(currentLevel.obstacleCount)].map((_, i) => {
       return {
-        z: - i * currentLevel.obstacleDistance
+        z: - i * currentLevel.obstacleDistance +
           // offset before the first obstacle
           - 4,
         type: getRandomItem(["o-fire", "o-water", "o-leaf"] as const),
@@ -48,7 +47,6 @@ export default function GameScene() {
       {currentLevelIndex >= 2 && <MatchUI />}
       <ProgressBar />
       <HealthBar />
-      <PowerUpUI />
     </Canvas>
   )
 }
