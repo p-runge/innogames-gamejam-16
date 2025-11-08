@@ -8,6 +8,13 @@ export default function Map() {
     -2,
     -6,
     -8,
+    -12,
+    -14,
+    -18,
+    -20,
+    -24,
+    -26,
+    -30,
   ];
   // This reference will give us direct access to the mesh
   const meshRef = useRef<Mesh>(null!);
