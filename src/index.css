@@ -1,5 +1,12 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Cloudy";
+  src: url("/cloudy.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 html,
 body,
 #root {
@@ -18,6 +25,10 @@ body,
   /* border: 5px solid red; */
   aspect-ratio: 9 / 16;
   /* object-fit: contain; */
+}
+
+.font-cloudy {
+  font-family: "Cloudy", system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
 :root {
