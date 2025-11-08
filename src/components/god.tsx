@@ -9,23 +9,24 @@ export default function God() {
   const setIsPaused = useGame((s) => s.setIsPaused);
 
   const [isTalking, setIsTalking] = useState(false);
-  const [hasTriggeredInstructionPause, setHasTriggeredInstructionPause] = useState(false);
+  const [triggeredInstructions, setTriggeredInstructions] = useState<Set<number>>(new Set());
+  const [currentInstruction, setCurrentInstruction] = useState<string | null>(null);
   console.log("mapZ", mapZ);
 
   useEffect(() => {
-    if (!currentLevel?.instruction) {
+    if (!currentLevel?.instructions) {
       return
     }
 
-    if (mapZ < 2) {
-      return
-    }
-
-    if (!hasTriggeredInstructionPause) {
-      setIsTalking(true);
-      setHasTriggeredInstructionPause(true);
-    }
-  }, [mapZ]);
+    // Check each instruction to see if it should be triggered
+    currentLevel.instructions.forEach((instruction, index) => {
+      if (mapZ >= instruction.mapZ && !triggeredInstructions.has(index)) {
+        setCurrentInstruction(instruction.text);
+        setIsTalking(true);
+        setTriggeredInstructions((prev) => new Set(prev).add(index));
+      }
+    });
+  }, [mapZ, currentLevel, triggeredInstructions]);
 
   useEffect(() => {
     if (!isTalking) {
@@ -78,11 +79,11 @@ export default function God() {
           <img src={imageSrc} className="w-full" />
         </div>
       </Html>
-      {currentLevel?.instruction && isTalking && <Html position={[0, 2, -10]} center>
+      {currentInstruction && isTalking && <Html position={[0, 3.6, 0]} center>
         {/* speech bubble */}
         <div className="bg-white p-2 rounded-lg shadow-lg max-w-xs w-[300px]">
           <p className="text-sm">
-            {currentLevel.instruction}
+            {currentInstruction}
           </p>
         </div>
       </Html>}

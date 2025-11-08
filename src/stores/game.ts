@@ -8,7 +8,10 @@ type Level = {
   obstacleDistance: number;
   obstacleCount: number;
   speed: number;
-  instruction?: string;
+  instructions?: {
+    mapZ: number;
+    text: string;
+  }[];
 };
 type LevelMetric = Record<number, Level>;
 
@@ -17,15 +20,27 @@ export const LEVELS: LevelMetric = {
     obstacleDistance: 8,
     obstacleCount: 4,
     speed: 2,
-    instruction:
-      "You need to break through the obstacles in your way! Collect the matching power-up to do so. You can move around with \u2190 and \u2192.",
+    instructions: [
+      {
+        mapZ: 2,
+        text: "You need to break through the obstacles in your way! Collect the matching power-up to do so. You can move around with \u2190 and \u2192.",
+      },
+    ],
   },
   2: {
     obstacleDistance: 8,
     obstacleCount: 6,
     speed: 2,
-    instruction:
-      "Watch out! The required power-ups might change from here on. Make sure to pay attention on what power-up you'll need!",
+    instructions: [
+      {
+        mapZ: 2,
+        text: "Watch out! The required power-ups might change from here on. Make sure to pay attention on what power-up you'll need!",
+      },
+      {
+        mapZ: 10,
+        text: "See how the power-up and obstacle types have changed? Stay alert!",
+      },
+    ],
   },
   3: {
     obstacleDistance: 8,
