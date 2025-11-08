@@ -66,18 +66,36 @@ const sceneMap: Record<SceneType, React.FC> = {
   "level-3-review": () => (
     <StoryScene dialog={"Level 3 Success"} nextScene="game" />
   ),
-  lose1: () => <StoryScene dialog="..." nextScene="lose2" />,
+  lose1: () => {
+    const resetGame = useGame((s) => s.resetGame);
+
+    useEffect(() => {
+      resetGame();
+    }, [])
+
+    return (
+      <StoryScene dialog="..." nextScene="lose2" />
+    )
+  },
   lose2: () => (
     <StoryScene
       dialog="I see, you failed your quest. Good thing this is not real life, so you can just move your dead ass out there and try again."
       nextScene="menu"
     />
   ),
-  win1: () => (
-    <StoryScene
-      dialog="Finally… You did it! Now it is time to earn your reward. Come and share some of these delicious Mettbrötchen with me. Your service will never be forgotten."
-      nextScene="win2"
-    />
-  ),
+  win1: () => {
+    const resetGame = useGame((s) => s.resetGame);
+
+    useEffect(() => {
+      resetGame();
+    }, [])
+
+    return (
+      <StoryScene
+        dialog="Finally… You did it! Now it is time to earn your reward. Come and share some of these delicious Mettbrötchen with me. Your service will never be forgotten."
+        nextScene="win2"
+      />
+    )
+  },
   win2: () => <StoryScene dialog="Thanks for playing" nextScene="menu" />,
 };

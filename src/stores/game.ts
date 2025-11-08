@@ -51,6 +51,7 @@ interface GameState {
   setObstacles: (obstacles: { z: number; type: ObstacleType }[]) => void;
   powerUpObstacleMap: Record<PowerUpType, ObstacleType>;
   randomizePowerUpObstacleMap: () => void;
+  resetGame: () => void;
 }
 
 export const useGame = create<GameState>((set) => ({
@@ -103,4 +104,19 @@ export const useGame = create<GameState>((set) => ({
         },
       };
     }),
+  resetGame: () =>
+    set(() => ({
+      currentLevel: null,
+      currentLevelIndex: 0,
+      health: MAX_HEALTH,
+      playerPosition: [0, 0, 4],
+      powerUp: null,
+      mapZ: 0,
+      obstacles: [],
+      powerUpObstacleMap: {
+        "p-fire": "o-fire",
+        "p-water": "o-water",
+        "p-leaf": "o-leaf",
+      },
+    })),
 }));
