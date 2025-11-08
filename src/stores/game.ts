@@ -20,6 +20,8 @@ interface GameState {
     type: ObstacleType;
   }[];
   setObstacles: (obstacles: { z: number; type: ObstacleType }[]) => void;
+  powerUpObstacleMap: Record<PowerUpType, ObstacleType>;
+  randomizePowerUpObstacleMap: () => void;
 }
 
 export const useGame = create<GameState>((set) => ({
@@ -42,4 +44,30 @@ export const useGame = create<GameState>((set) => ({
   setMapZ: (z) => set({ mapZ: z }),
   obstacles: [],
   setObstacles: (obstacles) => set({ obstacles }),
+  powerUpObstacleMap: {
+    "p-fire": "o-fire",
+    "p-water": "o-water",
+    "p-leaf": "o-leaf",
+  },
+  randomizePowerUpObstacleMap: () =>
+    set(() => {
+      const obstacleTypes: ObstacleType[] = ["o-fire", "o-water", "o-leaf"];
+
+      // Shuffle obstacle types
+      for (let i = obstacleTypes.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [obstacleTypes[i], obstacleTypes[j]] = [
+          obstacleTypes[j],
+          obstacleTypes[i],
+        ];
+      }
+
+      return {
+        powerUpObstacleMap: {
+          "p-fire": obstacleTypes[0],
+          "p-water": obstacleTypes[1],
+          "p-leaf": obstacleTypes[2],
+        },
+      };
+    }),
 }));

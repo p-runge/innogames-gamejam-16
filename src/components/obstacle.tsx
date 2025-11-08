@@ -2,7 +2,7 @@ import { useGame } from "../stores/game";
 import PowerUp from "./power-up";
 import { DIMENSIONS as playerDimensions } from "./player";
 
-export type ObstacleType = "fire" | "water" | "leaf";
+export type ObstacleType = "o-fire" | "o-water" | "o-leaf";
 
 type Props = {
   type: ObstacleType;
@@ -26,7 +26,7 @@ export default function Obstacle(props: Props) {
       <mesh {...props}>
         <boxGeometry args={DIMENSIONS} />
         <meshStandardMaterial color={
-          props.type === "fire" ? "red" : props.type === "water" ? "blue" : "green"
+          props.type === "o-fire" ? "red" : props.type === "o-water" ? "blue" : "green"
         } />
       </mesh>
 
@@ -36,9 +36,9 @@ export default function Obstacle(props: Props) {
        */}
       {(powerUpIsAheadOfPlayer || (!powerUp && powerUpZPosition + mapZ < playerPosition[2])) && (
         <>
-          <PowerUp type="fire" position={[props.position[0] - 1.5, props.position[1], powerUpZPosition]} />
-          <PowerUp type="water" position={[props.position[0], props.position[1], powerUpZPosition]} />
-          <PowerUp type="leaf" position={[props.position[0] + 1.5, props.position[1], powerUpZPosition]} />
+          <PowerUp type="p-fire" position={[props.position[0] - 1.5, props.position[1], powerUpZPosition]} />
+          <PowerUp type="p-water" position={[props.position[0], props.position[1], powerUpZPosition]} />
+          <PowerUp type="p-leaf" position={[props.position[0] + 1.5, props.position[1], powerUpZPosition]} />
         </>)}
     </>
   );

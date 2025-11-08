@@ -17,6 +17,7 @@ export default function Map() {
   const takeDamage = useGame((state) => state.takeDamage);
   const setPowerUp = useGame((state) => state.setPowerUp);
   const powerUp = useGame((state) => state.powerUp);
+  const powerUpObstacleMap = useGame((state) => state.powerUpObstacleMap);
 
   const setMapZ = useGame((state) => state.setMapZ);
 
@@ -43,7 +44,7 @@ export default function Map() {
           setPowerUp(null);
           setCollidedObstacles(prev => new Set(prev).add(index));
 
-          if (powerUp !== obstacle.type) {
+          if (!powerUp || powerUpObstacleMap[powerUp] !== obstacle.type) {
             takeDamage();
           }
         }

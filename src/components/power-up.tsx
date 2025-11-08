@@ -5,7 +5,7 @@ import { checkCollision } from "../utils/common";
 import { useGame } from "../stores/game";
 import { DIMENSIONS as playerDimensions } from "./player";
 
-export type PowerUpType = "fire" | "water" | "leaf";
+export type PowerUpType = "p-fire" | "p-water" | "p-leaf";
 
 const RADIUS = 0.5;
 
@@ -48,8 +48,8 @@ export default function PowerUp(props: Props) {
     >
       <sphereGeometry args={[RADIUS, 32, 32]} />
       <meshStandardMaterial color={
-        props.type === "fire" ? "darkred" :
-          props.type === "water" ? "darkblue" :
+        props.type === "p-fire" ? "darkred" :
+          props.type === "p-water" ? "darkblue" :
             "darkgreen"
       } />
     </mesh>
