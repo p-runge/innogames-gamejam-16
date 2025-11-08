@@ -21,7 +21,7 @@ body,
 }
 
 #canvas-container {
-  background-color: lightblue;
+  background-color: skyblue;
   /* border: 5px solid red; */
   aspect-ratio: 9 / 16;
   /* object-fit: contain; */
