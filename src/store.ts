@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import type { PowerUpType } from "./components/power-up";
 
 export const MAX_HEALTH = 3;
 
@@ -7,6 +8,8 @@ interface GameState {
   takeDamage: () => void;
   playerPosition: [number, number, number];
   setPlayerPosition: (position: [number, number, number]) => void;
+  powerUp: PowerUpType | null;
+  setPowerUp: (type: PowerUpType | null) => void;
 }
 
 export const useGame = create<GameState>((set) => ({
@@ -17,4 +20,9 @@ export const useGame = create<GameState>((set) => ({
     })),
   playerPosition: [0, 0, 4],
   setPlayerPosition: (position) => set({ playerPosition: position }),
+  powerUp: null,
+  setPowerUp: (type) => {
+    console.log("Power-up collected:", type);
+    return set({ powerUp: type });
+  },
 }));

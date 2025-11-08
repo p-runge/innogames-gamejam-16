@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import type { Mesh } from "three";
 
-type PowerUpType = "fire" | "water" | "leaf";
+export type PowerUpType = "fire" | "water" | "leaf";
 
 type Props = {
   type: PowerUpType;

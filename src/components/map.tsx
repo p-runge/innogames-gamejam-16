@@ -8,6 +8,7 @@ import { DIMENSIONS as playerDimensions } from "./player";
 
 export default function Map() {
   const obstaclesZ: number[] = [
+    2,
     -2,
     -6,
     -8,

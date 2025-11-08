@@ -4,6 +4,7 @@ import God from "../components/god";
 import HealthBar from "../components/health-bar";
 import Map from "../components/map";
 import Player from "../components/player";
+import PowerUpUI from "../components/power-up-ui";
 import ProgressBar from "../components/progress-bar";
 
 export default function GameScene() {
@@ -18,6 +19,7 @@ export default function GameScene() {
       <God />
       <ProgressBar />
       <HealthBar />
+      <PowerUpUI />
     </Canvas>
   )
 }
