@@ -6,11 +6,9 @@ export type SceneType =
   | "intro2"
   | "intro3"
   | "intro4"
-  | "story"
   | "game"
   | "win"
-  | "lose"
-  | "end";
+  | "lose";
 
 type Scene = {
   currentScene: SceneType;
