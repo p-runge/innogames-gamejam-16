@@ -71,6 +71,7 @@ export const useGame = create<GameState>((set) => ({
     set((state) => ({
       currentLevelIndex: state.currentLevelIndex + 1,
       currentLevel: LEVELS[state.currentLevelIndex + 1],
+      mapZ: 0,
     })),
   health: MAX_HEALTH,
   takeDamage: () =>
