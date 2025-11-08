@@ -7,7 +7,7 @@ export default function MatchUI() {
   const powerUpObstacleMap = useGame((state) => state.powerUpObstacleMap);
 
   return (
-    <Html position={[0, 2.5, 0]} center>
+    <Html position={[0, 2.2, 0]} center>
       <div className="bg-white rounded shadow p-4 w-[250px]">
         <div className="flex justify-between">
           {Object.entries(powerUpObstacleMap).map(([powerUp, obstacle]) => (

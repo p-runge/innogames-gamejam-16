@@ -15,32 +15,27 @@ type LevelMetric = Record<number, Level>;
 export const LEVELS: LevelMetric = {
   1: {
     obstacleDistance: 8,
-    obstacleCount: 6,
+    obstacleCount: 4,
     speed: 2,
     instruction:
       "You need to break through the obstacles in your way! Collect the matching power-up to do so. You can move around with \u2190 and \u2192.",
   },
   2: {
     obstacleDistance: 8,
-    obstacleCount: 12,
+    obstacleCount: 6,
     speed: 2,
     instruction:
       "Watch out! The required power-ups might change from here on. Make sure to pay attention on what power-up you'll need!",
   },
   3: {
     obstacleDistance: 8,
-    obstacleCount: 14,
+    obstacleCount: 10,
     speed: 2.5,
   },
   4: {
     obstacleDistance: 8,
-    obstacleCount: 16,
-    speed: 3.5,
-  },
-  5: {
-    obstacleDistance: 8,
-    obstacleCount: 18,
-    speed: 4,
+    obstacleCount: 12,
+    speed: 3,
   },
 };
 

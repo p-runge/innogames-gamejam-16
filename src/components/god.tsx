@@ -78,7 +78,7 @@ export default function God() {
           <img src={imageSrc} className="w-full" />
         </div>
       </Html>
-      {currentLevel?.instruction && isTalking && <Html position={[0, 0, -10]} center>
+      {currentLevel?.instruction && isTalking && <Html position={[0, 2, -10]} center>
         {/* speech bubble */}
         <div className="bg-white p-2 rounded-lg shadow-lg max-w-xs w-[300px]">
           <p className="text-sm">

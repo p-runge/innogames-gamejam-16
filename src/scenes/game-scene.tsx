@@ -42,9 +42,9 @@ export default function GameScene() {
       <Floor position={[0, -1, 1]} />
       <Player />
       <Map />
+      {currentLevelIndex >= 2 && <MatchUI />}
       <God />
 
-      {currentLevelIndex >= 2 && <MatchUI />}
       <ProgressBar />
       <HealthBar />
     </Canvas>
