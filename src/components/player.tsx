@@ -1,27 +1,14 @@
-import { useFrame } from "@react-three/fiber";
-import { useGame } from "../store";
-import { useState } from "react";
-
 type Props = {
   position: [number, number, number];
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
+export const DIMENSIONS: [number, number, number] = [1, 2, 1];
+
 export default function Player(props: Props) {
-  const takeDamage = useGame((state) => state.takeDamage);
-
-  // TODO: Replace with real damage logic
-  const [seconds, setSeconds] = useState(0);
-  useFrame((state) => {
-    const newSeconds = Math.floor(state.clock.getElapsedTime());
-    if (newSeconds !== seconds) {
-      setSeconds(newSeconds);
-      takeDamage();
-    }
-  });
-
   return (
     <mesh {...props}>
-      <boxGeometry args={[1, 2, 1]} />
+      <boxGeometry args={DIMENSIONS} />
       <meshStandardMaterial color="green" />
     </mesh>
   );
