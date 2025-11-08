@@ -3,6 +3,7 @@ import { useScene, type SceneType } from "../stores/scene";
 import { useGame } from "../stores/game";
 
 type StorySceneProps = {
+  imgSrc: string;
   dialog: string;
   nextScene: SceneType;
 };
@@ -26,9 +27,9 @@ export default function StoryScene(props: StorySceneProps) {
 
   return (
     <div className="h-full p-8 flex flex-col justify-around relative">
-      <div className="flex flex-col gap-8 items-center">
-        <div>Image</div>
-        <div className="text-xl">{props.dialog}</div>
+      <div className="flex flex-col gap-8 items-center h-full">
+        <img src={props.imgSrc} className="w-64 h-64 object-cover" />
+        <div className="text-xl grow">{props.dialog}</div>
       </div>
       <div className="text-center text-2xl font-bold absolute bottom-8">
         Press any key to continue your journey

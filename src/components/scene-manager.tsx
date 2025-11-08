@@ -26,6 +26,7 @@ const sceneMap: Record<SceneType, React.FC> = {
   menu: MenuScene,
   intro1: () => (
     <StoryScene
+      imgSrc="/god-waving.png"
       dialog={
         "Hey you. You`re finally awake. My name is Philipp and i want you to celebrate the most important day of the week with me - it is Mettwoch! All we need is some bread, butter, Mett and some onions. Let me just get some out of the kitchen…"
       }
@@ -34,6 +35,7 @@ const sceneMap: Record<SceneType, React.FC> = {
   ),
   intro2: () => (
     <StoryScene
+      imgSrc="/god-default.png"
       dialog={
         "Looks like i am completely out of ingredients. Well, due to i am just a hungry guy on a cloud i need you to collect them. It will be a dangerous and exhausting journey, and its not easy to find the right path through. But don`t worry, there is still a way i can help you out. Take this knife, it is able to crack up the magical barriers if you add the right element power to it. "
       }
@@ -42,6 +44,7 @@ const sceneMap: Record<SceneType, React.FC> = {
   ),
   intro3: () => (
     <StoryScene
+      imgSrc="/god-talking.png"
       dialog={
         "The ingredients are guarded by a maze - you have to find the right item ( ? ) to navigate safely through it. Watch out for the item that matches the color of the next obstacle. But there is one more outstanding issue - a higher power has decreed that logic is optional (irrational?) around those mazes. Color logic could switch at any time."
       }
@@ -50,6 +53,7 @@ const sceneMap: Record<SceneType, React.FC> = {
   ),
   intro4: () => (
     <StoryScene
+      imgSrc="/god-default.png"
       dialog={
         "Now go and catch all the…ah wait, wrong universe, my bad. Well, i am hungry so hurry up. And dont fail this. Good Luck"
       }
@@ -59,6 +63,7 @@ const sceneMap: Record<SceneType, React.FC> = {
   game: GameScene,
   "level-1-review": () => (
     <StoryScene
+      imgSrc=""
       dialog={
         "You did it! These were your first successful steps on the ladder leading to a delicious Mettbrötchen. But be aware, there are many more dangers awaiting you.."
       }
@@ -67,6 +72,7 @@ const sceneMap: Record<SceneType, React.FC> = {
   ),
   "level-2-review": () => (
     <StoryScene
+      imgSrc=""
       dialog={
         "Ah nice, you found the butter. Go, put it on your bread and move on. We have no time to lose."
       }
@@ -75,6 +81,7 @@ const sceneMap: Record<SceneType, React.FC> = {
   ),
   "level-3-review": () => (
     <StoryScene
+      imgSrc=""
       dialog={
         "The heart of our dish. Ah, i love that smell. This is by far the most important ingredient, so make sure to have enough of it on your slice. But there is still one more important thing to add.."
       }
@@ -82,9 +89,11 @@ const sceneMap: Record<SceneType, React.FC> = {
     />
   ),
   win1: Win1Scene,
-  win2: () => <StoryScene dialog="Thanks for playing" nextScene="menu" />,
+  win2: () => <StoryScene
+    imgSrc="" dialog="Thanks for playing" nextScene="menu" />,
   lose1: Lose1Scene,
-  lose2: () => <StoryScene dialog="Better luck next time!" nextScene="menu" />,
+  lose2: () => <StoryScene
+    imgSrc="" dialog="Better luck next time!" nextScene="menu" />,
 };
 
 
@@ -95,7 +104,8 @@ function Lose1Scene() {
     resetGame();
   }, []);
 
-  return <StoryScene dialog="..." nextScene="lose2" />;
+  return <StoryScene
+    imgSrc="" dialog="..." nextScene="lose2" />;
 }
 
 function Win1Scene() {
@@ -107,6 +117,7 @@ function Win1Scene() {
 
   return (
     <StoryScene
+      imgSrc=""
       dialog="Finally… You did it! Now it is time to earn your reward. Add those onions and then share some of these delicious Mettbrötchen with me. Your service will never be forgotten."
       nextScene="win2"
     />
