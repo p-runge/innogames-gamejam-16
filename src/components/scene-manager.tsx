@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import GameScene from '../scenes/game-scene'
 import { useGame } from '../store'
 import { useScene, type SceneType } from '../stores/scene'
@@ -8,13 +9,15 @@ export function SceneManager() {
 
   // handle death
   const health = useGame((s) => s.health)
-  if (health <= 0) {
-    setScene('end')
-  }
+  useEffect(() => {
+    if (health <= 0) {
+      setScene('end')
+    }
+  }, [health, setScene])
 
-  const SceneComponent = sceneMap[currentScene]
+  const Scene = sceneMap[currentScene]
 
-  return <SceneComponent />
+  return <Scene />
 }
 
 const sceneMap: Record<SceneType, React.FC> = {
