@@ -14,7 +14,7 @@ export default function GameScene() {
       {/* <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} decay={0} intensity={Math.PI} /> */}
       <pointLight position={[0, 10, 5]} decay={0} intensity={Math.PI / 2} />
       <Floor position={[0, -1, 1]} />
-      <Player position={[0, 0, 4]} />
+      <Player />
       <Map />
       <God />
       <ProgressBar />
