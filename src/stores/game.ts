@@ -21,7 +21,7 @@ export const LEVELS: LevelMetric = {
 
 interface GameState {
   currentLevel: Level | null;
-  _currentLevelIndex: number;
+  currentLevelIndex: number;
   increaseCurrentLevel: () => void;
   health: number;
   takeDamage: () => void;
@@ -42,11 +42,11 @@ interface GameState {
 
 export const useGame = create<GameState>((set) => ({
   currentLevel: null,
-  _currentLevelIndex: 0,
+  currentLevelIndex: 0,
   increaseCurrentLevel: () =>
     set((state) => ({
-      _currentLevelIndex: state._currentLevelIndex + 1,
-      currentLevel: LEVELS[state._currentLevelIndex + 1],
+      currentLevelIndex: state.currentLevelIndex + 1,
+      currentLevel: LEVELS[state.currentLevelIndex + 1],
     })),
   health: MAX_HEALTH,
   takeDamage: () =>

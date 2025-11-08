@@ -16,6 +16,7 @@ import { getRandomItem } from "../utils/common";
 export default function GameScene() {
   const setObstacles = useGame((s) => s.setObstacles);
   const currentLevel = useGame((s) => s.currentLevel);
+  const currentLevelIndex = useGame((s) => s.currentLevelIndex);
 
   useEffect(() => {
     if (!currentLevel) return;
@@ -44,7 +45,7 @@ export default function GameScene() {
       <Map />
       <God />
 
-      <MatchUI />
+      {currentLevelIndex >= 2 && <MatchUI />}
       <ProgressBar />
       <HealthBar />
       <PowerUpUI />

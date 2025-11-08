@@ -23,6 +23,7 @@ export default function Map() {
   const setMapZ = useGame((state) => state.setMapZ);
 
   const currentLevel = useGame((state) => state.currentLevel);
+  const currentLevelIndex = useGame((s) => s.currentLevelIndex);
 
   useFrame((_state, delta) => {
     const newMapZ = meshRef.current.position.z += delta * (currentLevel?.speed ?? 1);
@@ -45,8 +46,11 @@ export default function Map() {
       if (checkCollision(playerPosition, playerDimensions, obstaclePosition, obstacleDimensions)) {
         if (!collidedObstacles.has(index)) {
           setPowerUp(null);
-          randomizePowerUpObstacleMap();
           setCollidedObstacles(prev => new Set(prev).add(index));
+
+          if (currentLevelIndex >= 2) {
+            randomizePowerUpObstacleMap();
+          }
 
           if (!powerUp || powerUpObstacleMap[powerUp] !== obstacle.type) {
             takeDamage();
