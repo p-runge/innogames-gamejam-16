@@ -10,8 +10,10 @@ export type SceneType =
   | "level-1-review"
   | "level-2-review"
   | "level-3-review"
-  | "win"
-  | "lose";
+  | "win1"
+  | "win2"
+  | "lose1"
+  | "lose2";
 
 type Scene = {
   currentScene: SceneType;

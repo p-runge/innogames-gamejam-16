@@ -13,7 +13,7 @@ export function SceneManager() {
   const health = useGame((s) => s.health);
   useEffect(() => {
     if (health <= 0) {
-      setScene("lose");
+      setScene("lose1");
     }
   }, [health, setScene]);
 
@@ -57,6 +57,7 @@ const sceneMap: Record<SceneType, React.FC> = {
     />
   ),
   game: GameScene,
+<<<<<<< HEAD
   "level-1-review": () => (
     <StoryScene
       dialog={
@@ -83,4 +84,20 @@ const sceneMap: Record<SceneType, React.FC> = {
   ),
   lose: () => <div>Game Over</div>,
   win: () => <div>You won!</div>,
+=======
+  lose1: () => <StoryScene dialog="..." nextScene="lose2" />,
+  lose2: () => (
+    <StoryScene
+      dialog="I see, you failed your quest. Good thing this is not real life, so you can just move your dead ass out there and try again."
+      nextScene="menu"
+    />
+  ),
+  win1: () => (
+    <StoryScene
+      dialog="Finally… You did it! Now it is time to earn your reward. Come and share some of these delicious Mettbrötchen with me. Your service will never be forgotten."
+      nextScene="win2"
+    />
+  ),
+  win2: () => <StoryScene dialog="Thanks for playing" nextScene="menu" />,
+>>>>>>> 9ed0334 (add winning and losing texts)
 };
