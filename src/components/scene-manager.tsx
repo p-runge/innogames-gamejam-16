@@ -35,7 +35,7 @@ const sceneMap: Record<SceneType, React.FC> = {
   ),
   intro2: () => (
     <StoryScene
-      imgSrc="/god-default.png"
+      imgSrc="/god-sad.png"
       dialog={
         "Looks like i am completely out of ingredients. Well, due to i am just a hungry guy on a cloud i need you to collect them. It will be a dangerous and exhausting journey, and its not easy to find the right path through. But don`t worry, there is still a way i can help you out. Take this knife, it is able to crack up the magical barriers if you add the right element power to it. "
       }
@@ -53,7 +53,7 @@ const sceneMap: Record<SceneType, React.FC> = {
   ),
   intro4: () => (
     <StoryScene
-      imgSrc="/god-default.png"
+      imgSrc="/god-pointing.png"
       dialog={
         "Now go and catch all the…ah wait, wrong universe, my bad. Well, i am hungry so hurry up. And dont fail this. Good Luck"
       }
@@ -104,8 +104,13 @@ function Lose1Scene() {
     resetGame();
   }, []);
 
-  return <StoryScene
-    imgSrc="" dialog="..." nextScene="lose2" />;
+  return (
+    <StoryScene
+      imgSrc="/god-sad.png"
+      dialog="..."
+      nextScene="lose2"
+    />
+  );
 }
 
 function Win1Scene() {
