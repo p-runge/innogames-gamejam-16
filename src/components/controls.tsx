@@ -87,7 +87,6 @@ export default function Controls() {
       window.removeEventListener("keydown", handleKeyDown);
       window.removeEventListener("keyup", handleKeyUp);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [keysPressed]);
 
   return null;
