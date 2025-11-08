@@ -81,34 +81,34 @@ const sceneMap: Record<SceneType, React.FC> = {
       nextScene="game"
     />
   ),
-  lose1: () => {
-    const resetGame = useGame((s) => s.resetGame);
-
-    useEffect(() => {
-      resetGame();
-    }, []);
-
-    return <StoryScene dialog="..." nextScene="lose2" />;
-  },
-  lose2: () => (
-    <StoryScene
-      dialog="I see, you failed your quest. Good thing this is not real life, so you can just move your dead ass out there and try again."
-      nextScene="menu"
-    />
-  ),
-  win1: () => {
-    const resetGame = useGame((s) => s.resetGame);
-
-    useEffect(() => {
-      resetGame();
-    }, []);
-
-    return (
-      <StoryScene
-        dialog="Finally… You did it! Now it is time to earn your reward. Add those onions and then share some of these delicious Mettbrötchen with me. Your service will never be forgotten."
-        nextScene="win2"
-      />
-    );
-  },
+  win1: Win1Scene,
   win2: () => <StoryScene dialog="Thanks for playing" nextScene="menu" />,
+  lose1: Lose1Scene,
+  lose2: () => <StoryScene dialog="Better luck next time!" nextScene="menu" />,
 };
+
+
+function Lose1Scene() {
+  const resetGame = useGame((s) => s.resetGame);
+
+  useEffect(() => {
+    resetGame();
+  }, []);
+
+  return <StoryScene dialog="..." nextScene="lose2" />;
+}
+
+function Win1Scene() {
+  const resetGame = useGame((s) => s.resetGame);
+
+  useEffect(() => {
+    resetGame();
+  }, []);
+
+  return (
+    <StoryScene
+      dialog="Finally… You did it! Now it is time to earn your reward. Add those onions and then share some of these delicious Mettbrötchen with me. Your service will never be forgotten."
+      nextScene="win2"
+    />
+  );
+}
