@@ -8,6 +8,9 @@ export default function MenuScene() {
       setScene("story");
     };
     window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
   }, []);
 
   return (
