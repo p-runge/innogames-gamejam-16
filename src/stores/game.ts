@@ -97,10 +97,7 @@ export const useGame = create<GameState>((set) => ({
   playerPosition: [0, 0, 4],
   setPlayerPosition: (position) => set({ playerPosition: position }),
   powerUp: null,
-  setPowerUp: (type) => {
-    console.log("Power-up collected:", type);
-    return set({ powerUp: type });
-  },
+  setPowerUp: (type) => set({ powerUp: type }),
   mapZ: 0,
   setMapZ: (z) => set({ mapZ: z }),
   obstacles: [],

@@ -8,7 +8,6 @@ export default function Controls() {
 
   // handle player movement based on keys pressed
   useEffect(() => {
-    console.log("Keys pressed:", keysPressed);
     if (keysPressed.has("ArrowLeft") && !keysPressed.has("ArrowRight")) {
       // Move player left
       const playerIsInLeftPosition = playerPosition[0] === -1.5;

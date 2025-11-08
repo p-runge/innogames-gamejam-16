@@ -11,7 +11,6 @@ export default function God() {
   const [isTalking, setIsTalking] = useState(false);
   const [triggeredInstructions, setTriggeredInstructions] = useState<Set<number>>(new Set());
   const [currentInstruction, setCurrentInstruction] = useState<string | null>(null);
-  console.log("mapZ", mapZ);
 
   useEffect(() => {
     if (!currentLevel?.instructions) {

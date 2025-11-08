@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import GameScene from "../scenes/game-scene";
 import MenuScene from "../scenes/menu-scene";
 import StoryScene from "../scenes/story-scene";
@@ -8,6 +8,74 @@ import { useScene, type SceneType } from "../stores/scene";
 export function SceneManager() {
   const currentScene = useScene((s) => s.currentScene);
   const setScene = useScene((s) => s.setScene);
+
+  // used for audio management
+  const audioRef = useRef<HTMLAudioElement>(null);
+  const [audioSrc, setAudioSrc] = useState("");
+  const [userInteracted, setUserInteracted] = useState(false);
+
+
+  // load audio based on scene
+  useEffect(() => {
+    if (!userInteracted) return;
+
+    const el = audioRef.current;
+    if (!el) return;
+
+    let newAudioSrc;
+    switch (currentScene) {
+      case "menu":
+      case "intro1":
+      case "intro2":
+      case "intro3":
+      case "intro4":
+      case "win1":
+      case "win2":
+      case "lose1":
+      case "lose2":
+      case "level-1-review":
+      case "level-2-review":
+      case "level-3-review":
+        newAudioSrc = "/audio/Menu_music.mp3";
+        break;
+      case "game":
+        newAudioSrc = "/audio/Level_1_music.mp3";
+        break;
+    }
+
+    if (newAudioSrc === audioSrc) return; // keep playing
+
+    setAudioSrc(newAudioSrc);
+  }, [currentScene, audioRef, userInteracted]);
+
+  useEffect(() => {
+    if (!audioRef.current) return
+
+    audioRef.current.load(); // preload new track
+    if (userInteracted) {
+      audioRef.current.play().catch((e) => {
+        console.error(e);
+      });
+    }
+  }, [audioSrc]);
+
+
+  // Wait for first user interaction (needed to play audio)
+  useEffect(() => {
+    const handleInteraction = () => {
+      setUserInteracted(true);
+      document.removeEventListener("click", handleInteraction);
+      document.removeEventListener("keydown", handleInteraction);
+    };
+
+    document.addEventListener("click", handleInteraction);
+    document.addEventListener("keydown", handleInteraction);
+
+    return () => {
+      document.removeEventListener("click", handleInteraction);
+      document.removeEventListener("keydown", handleInteraction);
+    };
+  }, []);
 
   // handle death
   const health = useGame((s) => s.health);
@@ -19,7 +87,12 @@ export function SceneManager() {
 
   const Scene = sceneMap[currentScene];
 
-  return <Scene />;
+  return <>
+    <audio ref={audioRef} loop>
+      <source src={audioSrc} type="audio/mpeg" />
+    </audio>
+    <Scene />
+  </>;
 }
 
 const sceneMap: Record<SceneType, React.FC> = {
