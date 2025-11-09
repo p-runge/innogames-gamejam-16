@@ -46,12 +46,18 @@ export const LEVELS: LevelMetric = {
   3: {
     obstacleDistance: 12,
     obstacleCount: 6,
-    speed: 2,
+    speed: 2.5,
   },
   4: {
     obstacleDistance: 12,
     obstacleCount: 12,
-    speed: 2.5,
+    speed: 3.5,
+    instructions: [
+      {
+        mapZ: 2,
+        text: "This is it, the final level! To make things more interesting, the controls are reversed here. Good luck!",
+      },
+    ],
   },
 };
 

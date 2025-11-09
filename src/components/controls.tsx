@@ -5,6 +5,7 @@ export default function Controls() {
   const [keysPressed, setKeysPressed] = useState<Set<string>>(new Set());
   const playerPosition = useGame((state) => state.playerPosition);
   const setPlayerPosition = useGame((state) => state.setPlayerPosition);
+  const currentLevelIndex = useGame((state) => state.currentLevelIndex);
 
   // handle player movement based on keys pressed
   useEffect(() => {
@@ -15,7 +16,8 @@ export default function Controls() {
         return;
       }
       setPlayerPosition(([
-        -1.5,
+        // In level 4, the directions are reversed
+        currentLevelIndex >= 4 ? 1.5 : -1.5,
         playerPosition[1],
         playerPosition[2],
       ]));
@@ -27,7 +29,8 @@ export default function Controls() {
         return;
       }
       setPlayerPosition(([
-        1.5,
+        // In level 4, the directions are reversed
+        currentLevelIndex >= 4 ? -1.5 : 1.5,
         playerPosition[1],
         playerPosition[2],
       ]));
