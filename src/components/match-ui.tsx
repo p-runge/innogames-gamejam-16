@@ -1,21 +1,20 @@
 import { Html } from "@react-three/drei";
 import { useGame } from "../stores/game";
 import type { ObstacleType } from "./obstacle";
-import type { PowerUpType } from "./power-up";
-import { cn } from "../utils";
+import type { WeaponType } from "./weapon";
 
 export default function MatchUI() {
-  const powerUpObstacleMap = useGame((state) => state.powerUpObstacleMap);
+  const weaponObstacleMap = useGame((state) => state.weaponObstacleMap);
 
   return (
     <Html position={[0, 2.2, 0]} center>
       <div className="bg-white rounded shadow p-4 w-[250px]">
         <div className="flex justify-between">
-          {Object.entries(powerUpObstacleMap).map(([powerUp, obstacle]) => (
-            <div key={powerUp} className="flex flex-col items-center">
+          {Object.entries(weaponObstacleMap).map(([weapon, obstacle]) => (
+            <div key={weapon} className="flex flex-col items-center">
               <ObstacleIcon type={obstacle} />
               &uarr;
-              <PowerUpIcon type={powerUp as PowerUpType} />
+              <WeaponIcon type={weapon as WeaponType} />
             </div>
           ))}
         </div>
@@ -26,20 +25,24 @@ export default function MatchUI() {
 
 function ObstacleIcon({ type }: { type: ObstacleType }) {
   return (
-    <div className={cn("w-8 h-4", {
-      "bg-red-500": type === "o-fire",
-      "bg-blue-500": type === "o-water",
-      "bg-green-500": type === "o-leaf",
-    })} />
+    <div className="text-2xl rounded-full w-6 h-6">
+      {{
+        "o-rock": "🪨",
+        "o-paper": "📄",
+        "o-scissors": "✂️",
+      }[type]}
+    </div>
   );
 }
 
-function PowerUpIcon({ type }: { type: PowerUpType }) {
+function WeaponIcon({ type }: { type: WeaponType }) {
   return (
-    <div className={cn("text-4xl rounded-full w-4 h-4", {
-      "bg-red-700": type === "p-fire",
-      "bg-blue-700": type === "p-water",
-      "bg-green-700": type === "p-leaf",
-    })} />
+    <div className="text-2xl rounded-full w-6 h-6">
+      {{
+        "w-rock": "🪨",
+        "w-paper": "📄",
+        "w-scissors": "✂️",
+      }[type]}
+    </div>
   );
 }

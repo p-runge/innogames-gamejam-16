@@ -4,19 +4,20 @@ import type { Mesh } from "three";
 import { checkCollision } from "../utils/common";
 import { useGame } from "../stores/game";
 import { DIMENSIONS as playerDimensions } from "./player";
+import { Html } from "@react-three/drei";
 
-export type PowerUpType = "p-fire" | "p-water" | "p-leaf";
+export type WeaponType = "w-rock" | "w-paper" | "w-scissors";
 
 const RADIUS = 0.5;
 
 type Props = {
-  type: PowerUpType;
+  type: WeaponType;
   position: [number, number, number];
 }
 
-export default function PowerUp(props: Props) {
+export default function Weapon(props: Props) {
   const playerPosition = useGame((state) => state.playerPosition);
-  const setPowerUp = useGame((state) => state.setPowerUp);
+  const setWeapon = useGame((state) => state.setWeapon);
 
   const [isColliding, setIsColliding] = useState(false);
   const mapZ = useGame((state) => state.mapZ);
@@ -30,7 +31,7 @@ export default function PowerUp(props: Props) {
     ];
     if (checkCollision(playerPosition, playerDimensions, relativePosition, [RADIUS * 2, RADIUS * 2, RADIUS * 2])) {
       if (!isColliding) {
-        setPowerUp(props.type);
+        setWeapon(props.type);
         setIsColliding(true);
       }
     } else {
@@ -46,12 +47,21 @@ export default function PowerUp(props: Props) {
       ref={meshRef}
       position={props.position}
     >
-      <sphereGeometry args={[RADIUS, 32, 32]} />
+      <Html center>
+        <div className="w-16 h-16 text-6xl">
+          {{
+            "w-rock": "🪨",
+            "w-paper": "📄",
+            "w-scissors": "✂️",
+          }[props.type]}
+        </div>
+      </Html>
+      {/* <sphereGeometry args={[RADIUS, 32, 32]} />
       <meshStandardMaterial color={
-        props.type === "p-fire" ? "darkred" :
-          props.type === "p-water" ? "darkblue" :
+        props.type === "w-rock" ? "darkred" :
+          props.type === "w-paper" ? "darkblue" :
             "darkgreen"
-      } />
+      } /> */}
     </mesh>
   );
 }

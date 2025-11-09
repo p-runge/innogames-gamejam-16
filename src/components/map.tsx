@@ -15,10 +15,10 @@ export default function Map() {
   const [collidedObstacles, setCollidedObstacles] = useState<Set<number>>(new Set());
   const playerPosition = useGame((state) => state.playerPosition);
   const takeDamage = useGame((state) => state.takeDamage);
-  const setPowerUp = useGame((state) => state.setPowerUp);
-  const powerUp = useGame((state) => state.powerUp);
-  const powerUpObstacleMap = useGame((state) => state.powerUpObstacleMap);
-  const randomizePowerUpObstacleMap = useGame((state) => state.randomizePowerUpObstacleMap);
+  const setWeapon = useGame((state) => state.setWeapon);
+  const weapon = useGame((state) => state.weapon);
+  const weaponObstacleMap = useGame((state) => state.weaponObstacleMap);
+  const randomizeWeaponObstacleMap = useGame((state) => state.randomizeWeaponObstacleMap);
 
   const setMapZ = useGame((state) => state.setMapZ);
   const isPaused = useGame((state) => state.isPaused);
@@ -50,14 +50,14 @@ export default function Map() {
 
       if (checkCollision(playerPosition, playerDimensions, obstaclePosition, obstacleDimensions)) {
         if (!collidedObstacles.has(index)) {
-          setPowerUp(null);
+          setWeapon(null);
           setCollidedObstacles(prev => new Set(prev).add(index));
 
           if (currentLevelIndex >= 2) {
-            randomizePowerUpObstacleMap();
+            randomizeWeaponObstacleMap();
           }
 
-          if (!powerUp || powerUpObstacleMap[powerUp] !== obstacle.type) {
+          if (!weapon || weaponObstacleMap[weapon] !== obstacle.type) {
             takeDamage();
           }
         }

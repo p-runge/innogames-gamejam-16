@@ -25,7 +25,7 @@ export default function GameScene() {
         z: - i * currentLevel.obstacleDistance +
           // offset before the first obstacle
           - 4,
-        type: getRandomItem(["o-fire", "o-water", "o-leaf"] as const),
+        type: getRandomItem(["o-rock", "o-paper", "o-scissors"] as const),
       };
     });
     setObstacles(obstacles);

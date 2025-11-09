@@ -7,7 +7,7 @@ export const DIMENSIONS: [number, number, number] = [1, 2, 1];
 export default function Player() {
   const playerPosition = useGame((state) => state.playerPosition);
   const mapZ = useGame((state) => state.mapZ);
-  // const powerUp = useGame((state) => state.powerUp);
+  // const weapon = useGame((state) => state.weapon);
 
   // animate walking tile based on mapZ position
   const frame = Math.floor(Math.abs(mapZ) * 3) % 4;
@@ -29,11 +29,11 @@ export default function Player() {
       </Html>
       {/* <boxGeometry args={DIMENSIONS} /> */}
       {/* <meshStandardMaterial
-        color={powerUp ? {
-          "p-fire": "red",
-          "p-water": "blue",
-          "p-leaf": "green",
-        }[powerUp] : "gray"}
+        color={weapon ? {
+          "w-rock": "red",
+          "w-paper": "blue",
+          "w-scissors": "green",
+        }[weapon] : "gray"}
       /> */}
     </mesh>
   );

@@ -1,8 +1,9 @@
 import { useGame } from "../stores/game";
-import PowerUp from "./power-up";
+import Weapon from "./weapon";
 import { DIMENSIONS as playerDimensions } from "./player";
+import { Html } from "@react-three/drei";
 
-export type ObstacleType = "o-fire" | "o-water" | "o-leaf";
+export type ObstacleType = "o-rock" | "o-paper" | "o-scissors";
 
 type Props = {
   type: ObstacleType;
@@ -13,32 +14,37 @@ type Props = {
 export const DIMENSIONS: [number, number, number] = [5, 1, 1];
 
 export default function Obstacle(props: Props) {
-  const powerUp = useGame((state) => state.powerUp);
+  const weapon = useGame((state) => state.weapon);
   const playerPosition = useGame((state) => state.playerPosition);
   const mapZ = useGame((state) => state.mapZ);
 
-  const powerUpZPosition = props.position[2] + 3;
+  const weaponZPosition = props.position[2] + 3;
 
-  const powerUpIsAheadOfPlayer = powerUpZPosition + mapZ < playerPosition[2] - playerDimensions[2];
+  const weaponIsAheadOfPlayer = weaponZPosition + mapZ < playerPosition[2] - playerDimensions[2];
 
   return (
     <>
       <mesh {...props}>
-        <boxGeometry args={DIMENSIONS} />
+        {/* <boxGeometry args={DIMENSIONS} />
         <meshStandardMaterial color={
-          props.type === "o-fire" ? "red" : props.type === "o-water" ? "blue" : "green"
-        } />
+          props.type === "o-rock" ? "red" : props.type === "o-paper" ? "blue" : "green"
+        } /> */}
+        <Html center>
+          <div className="w-32 h-32 flex items-center justify-center text-white text-9xl font-bold">
+            {{
+              "o-rock": "🪨",
+              "o-paper": "📄",
+              "o-scissors": "✂️",
+            }[props.type]}
+          </div>
+        </Html>
       </mesh>
 
-      {/**
-       * Generally don't render power-ups if player has the corresponding power
-       * to prevent needing to track all power ups in the game store.
-       */}
-      {(powerUpIsAheadOfPlayer || (!powerUp && powerUpZPosition + mapZ < playerPosition[2])) && (
+      {(weaponIsAheadOfPlayer || (!weapon && weaponZPosition + mapZ < playerPosition[2])) && (
         <>
-          <PowerUp type="p-fire" position={[props.position[0] - 1.5, props.position[1], powerUpZPosition]} />
-          <PowerUp type="p-water" position={[props.position[0], props.position[1], powerUpZPosition]} />
-          <PowerUp type="p-leaf" position={[props.position[0] + 1.5, props.position[1], powerUpZPosition]} />
+          <Weapon type="w-rock" position={[props.position[0] - 1.5, props.position[1], weaponZPosition]} />
+          <Weapon type="w-paper" position={[props.position[0], props.position[1], weaponZPosition]} />
+          <Weapon type="w-scissors" position={[props.position[0] + 1.5, props.position[1], weaponZPosition]} />
         </>)}
     </>
   );

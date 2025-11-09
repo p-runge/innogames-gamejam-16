@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import type { ObstacleType } from "../components/obstacle";
-import type { PowerUpType } from "../components/power-up";
+import type { WeaponType } from "../components/weapon";
 import { getRandomItem } from "../utils/common";
 
 export const MAX_HEALTH = 3;
@@ -24,7 +24,7 @@ export const LEVELS: LevelMetric = {
     instructions: [
       {
         mapZ: 2,
-        text: "You need to break through the obstacles in your way! Collect the matching power-up to do so. You can move around with \u2190 and \u2192.",
+        text: "You need to break through the obstacles in your way by winning a game of rock paper scissors! Make the right choice to win. You can move around with \u2190 and \u2192.",
       },
     ],
   },
@@ -35,11 +35,11 @@ export const LEVELS: LevelMetric = {
     instructions: [
       {
         mapZ: 2,
-        text: "Watch out! The required power-ups might change from here on. Make sure to pay attention on what power-up you'll need!",
+        text: "Watch out! The rules might change from here on. Make sure to pay attention on what choice you need to make to get past the next obstacle.",
       },
       {
         mapZ: 10,
-        text: "See how the power-up and obstacle types have changed? Stay alert!",
+        text: "See how the rules have changed? Stay alert!",
       },
     ],
   },
@@ -63,8 +63,8 @@ interface GameState {
   takeDamage: () => void;
   playerPosition: [number, number, number];
   setPlayerPosition: (position: [number, number, number]) => void;
-  powerUp: PowerUpType | null;
-  setPowerUp: (type: PowerUpType | null) => void;
+  weapon: WeaponType | null;
+  setWeapon: (type: WeaponType | null) => void;
   mapZ: number;
   setMapZ: (z: number) => void;
   obstacles: {
@@ -72,8 +72,8 @@ interface GameState {
     type: ObstacleType;
   }[];
   setObstacles: (obstacles: { z: number; type: ObstacleType }[]) => void;
-  powerUpObstacleMap: Record<PowerUpType, ObstacleType>;
-  randomizePowerUpObstacleMap: () => void;
+  weaponObstacleMap: Record<WeaponType, ObstacleType>;
+  randomizeWeaponObstacleMap: () => void;
   resetGame: () => void;
 
   isPaused: boolean;
@@ -96,36 +96,36 @@ export const useGame = create<GameState>((set) => ({
     })),
   playerPosition: [0, 0, 4],
   setPlayerPosition: (position) => set({ playerPosition: position }),
-  powerUp: null,
-  setPowerUp: (type) => set({ powerUp: type }),
+  weapon: null,
+  setWeapon: (type) => set({ weapon: type }),
   mapZ: 0,
   setMapZ: (z) => set({ mapZ: z }),
   obstacles: [],
   setObstacles: (obstacles) => set({ obstacles }),
-  powerUpObstacleMap: {
-    "p-fire": "o-fire",
-    "p-water": "o-water",
-    "p-leaf": "o-leaf",
+  weaponObstacleMap: {
+    "w-rock": "o-scissors",
+    "w-paper": "o-rock",
+    "w-scissors": "o-paper",
   },
-  randomizePowerUpObstacleMap: () =>
+  randomizeWeaponObstacleMap: () =>
     set(() => {
       // Generate a random permutation by selecting a random valid arrangement
-      // There are 6 possible permutations, we want any except the initial one
+      // There are 6 possible permutations, we want any except the default one
       const validPermutations: ObstacleType[][] = [
-        ["o-fire", "o-leaf", "o-water"],
-        ["o-water", "o-fire", "o-leaf"],
-        ["o-water", "o-leaf", "o-fire"],
-        ["o-leaf", "o-fire", "o-water"],
-        ["o-leaf", "o-water", "o-fire"],
+        ["o-rock", "o-scissors", "o-paper"],
+        ["o-rock", "o-paper", "o-scissors"],
+        ["o-paper", "o-rock", "o-scissors"],
+        ["o-paper", "o-scissors", "o-rock"],
+        ["o-scissors", "o-paper", "o-rock"],
       ];
 
       const shuffled = getRandomItem(validPermutations);
 
       return {
-        powerUpObstacleMap: {
-          "p-fire": shuffled[0],
-          "p-water": shuffled[1],
-          "p-leaf": shuffled[2],
+        weaponObstacleMap: {
+          "w-rock": shuffled[0],
+          "w-paper": shuffled[1],
+          "w-scissors": shuffled[2],
         },
       };
     }),
@@ -135,13 +135,13 @@ export const useGame = create<GameState>((set) => ({
       currentLevelIndex: 0,
       health: MAX_HEALTH,
       playerPosition: [0, 0, 4],
-      powerUp: null,
+      weapon: null,
       mapZ: 0,
       obstacles: [],
-      powerUpObstacleMap: {
-        "p-fire": "o-fire",
-        "p-water": "o-water",
-        "p-leaf": "o-leaf",
+      weaponObstacleMap: {
+        "w-rock": "o-rock",
+        "w-paper": "o-paper",
+        "w-scissors": "o-scissors",
       },
     })),
 
