@@ -67,7 +67,7 @@ export function SceneManager() {
       }
       case "win": {
         // TODO: change to win music
-        newAudioSrc = "/audio/music/menu.mp3";
+        newAudioSrc = "/audio/music/winning.mp3";
       }
     }
 
