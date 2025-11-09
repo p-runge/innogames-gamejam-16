@@ -145,9 +145,9 @@ export const useGame = create<GameState>((set) => ({
       mapZ: 0,
       obstacles: [],
       weaponObstacleMap: {
-        "w-rock": "o-rock",
-        "w-paper": "o-paper",
-        "w-scissors": "o-scissors",
+        "w-rock": "o-scissors",
+        "w-paper": "o-rock",
+        "w-scissors": "o-paper",
       },
     })),
 
