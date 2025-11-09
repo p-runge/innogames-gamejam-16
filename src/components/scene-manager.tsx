@@ -163,7 +163,7 @@ const sceneMap: Record<SceneType, React.FC> = {
   ),
   win1: Win1Scene,
   win2: () => <StoryScene
-    imgSrc="" dialog="Thanks for playing" nextScene="menu" />,
+    imgSrc="/mett-gusta.png" dialog="Thanks for playing" nextScene="menu" />,
   lose1: Lose1Scene,
   lose2: () => (
     <StoryScene
@@ -200,7 +200,7 @@ function Win1Scene() {
 
   return (
     <StoryScene
-      imgSrc=""
+      imgSrc="/mett-gusta.png"
       dialog="Finally… You did it! Now it is time to earn your reward. Add those onions and then share some of these delicious Mettbrötchen with me. Your service will never be forgotten."
       nextScene="win2"
     />

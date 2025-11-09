@@ -29,8 +29,13 @@ export default function StoryScene(props: StorySceneProps) {
 
   return (
     <div className="h-full p-8 flex flex-col justify-around relative">
-      <div className="flex flex-col gap-8 items-center h-full">
-        <img src={props.imgSrc} className="w-64 h-64 object-cover" />
+      <div className="flex flex-col gap-12 items-center h-full">
+        <div className="relative w-64 h-64">
+          <img src={props.imgSrc} className="w-full object-cover" />
+          {props.imgSrc === "/mett-gusta.png" && (
+            <div className="absolute bottom-0 text-center w-full text-3xl translate-y-full font-bold text-[red] uppercase">Mett Gusta</div>
+          )}
+        </div>
         <div className="text-xl grow">{props.dialog}</div>
       </div>
       <div className="text-center text-2xl font-bold absolute bottom-8 left-0 right-0 animate-bounce">
