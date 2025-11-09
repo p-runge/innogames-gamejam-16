@@ -73,19 +73,20 @@ export default function God() {
 
   return (
     <>
-      <Html zIndexRange={[0]} position={[0, 4, 0]} center>
-        <div className="w-64">
-          <img src={imageSrc} className="w-full" />
+      <Html zIndexRange={[100]} position={[0, 4.25, 0]} center>
+        <div className="relative flex flex-col items-center">
+          <div className="w-32">
+            <img src={imageSrc} className="w-full" />
+          </div>
+          {currentInstruction && isTalking && (
+            <div className="absolute top-1/2 bg-white p-2 rounded-lg shadow-lg w-[400px]">
+              <p className="text-sm">
+                {currentInstruction}
+              </p>
+            </div>
+          )}
         </div>
       </Html>
-      {currentInstruction && isTalking && <Html zIndexRange={[10]} position={[0, 3.6, 0]} center>
-        {/* speech bubble */}
-        <div className="bg-white p-2 rounded-lg shadow-lg max-w-xs w-[300px]">
-          <p className="text-sm">
-            {currentInstruction}
-          </p>
-        </div>
-      </Html>}
       {isTalking && <Html position={[0, -6, 0]} center>
         {/* press any key to continue */}
         <div className="whitespace-nowrap text-center text-2xl font-bold animate-bounce">

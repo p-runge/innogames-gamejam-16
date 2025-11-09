@@ -39,14 +39,15 @@ export default function GameScene() {
       {/* <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} decay={0} intensity={Math.PI} /> */}
       <pointLight position={[0, 10, 5]} decay={0} intensity={Math.PI / 2} />
 
+      <God />
+      {currentLevelIndex >= 2 && <MatchUI />}
+      <ProgressBar />
+      <HealthBar />
+
       <Floor position={[0, -1, -1]} />
       <Player />
       <Map />
-      {currentLevelIndex >= 2 && <MatchUI />}
-      <God />
 
-      <ProgressBar />
-      <HealthBar />
     </Canvas>
   )
 }

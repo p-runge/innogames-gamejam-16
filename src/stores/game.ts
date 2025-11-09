@@ -35,7 +35,7 @@ export const LEVELS: LevelMetric = {
     instructions: [
       {
         mapZ: 2,
-        text: "Watch out! The rules might change from here on. Make sure to pay attention on what choice you need to make to get past the next obstacle.",
+        text: "Watch out! The rules might change from here on. Make sure to pay attention to what choice you need to make to get past the next obstacle.",
       },
       {
         mapZ: 14,
@@ -45,7 +45,7 @@ export const LEVELS: LevelMetric = {
   },
   3: {
     obstacleDistance: 12,
-    obstacleCount: 10,
+    obstacleCount: 6,
     speed: 2,
   },
   4: {

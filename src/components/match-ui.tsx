@@ -7,13 +7,13 @@ export default function MatchUI() {
   const weaponObstacleMap = useGame((state) => state.weaponObstacleMap);
 
   return (
-    <Html position={[0, 2.2, 0]} center>
+    <Html zIndexRange={[0]} position={[0, 3, 0]} center>
       <div className="bg-white rounded shadow p-4 w-[250px]">
         <div className="flex justify-between">
           {Object.entries(weaponObstacleMap).map(([weapon, obstacle]) => (
             <div key={weapon} className="flex flex-col items-center">
               <ObstacleIcon type={obstacle} />
-              &uarr;
+              <div className=""><span>&uarr; beats</span></div>
               <WeaponIcon type={weapon as WeaponType} />
             </div>
           ))}
