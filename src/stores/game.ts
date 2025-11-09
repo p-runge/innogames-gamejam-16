@@ -31,7 +31,7 @@ export const LEVELS: LevelMetric = {
   2: {
     obstacleDistance: 8,
     obstacleCount: 6,
-    speed: 2,
+    speed: 1.5,
     instructions: [
       {
         mapZ: 2,
@@ -46,12 +46,12 @@ export const LEVELS: LevelMetric = {
   3: {
     obstacleDistance: 8,
     obstacleCount: 10,
-    speed: 2.5,
+    speed: 2,
   },
   4: {
     obstacleDistance: 8,
     obstacleCount: 12,
-    speed: 3,
+    speed: 2.5,
   },
 };
 
