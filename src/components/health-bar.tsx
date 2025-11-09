@@ -5,7 +5,7 @@ export default function HealthBar() {
   const health = useGame((state) => state.health);
 
   return (
-    <Html position={[-1.8, 4.5, 0]} center>
+    <Html position={[-2.25, 4.6, 0]}>
       <div className="flex gap-2">
         {Array.from({ length: MAX_HEALTH }).map((_, index) => (
           <span

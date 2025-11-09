@@ -3,7 +3,7 @@ import type { ObstacleType } from "../components/obstacle";
 import type { WeaponType } from "../components/weapon";
 import { getRandomItem } from "../utils/common";
 
-export const MAX_HEALTH = 3;
+export const MAX_HEALTH = 5;
 
 type Level = {
   obstacleDistance: number;
