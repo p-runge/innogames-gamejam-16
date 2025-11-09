@@ -13,6 +13,7 @@ export function SceneManager() {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [audioSrc, setAudioSrc] = useState("");
   const [userInteracted, setUserInteracted] = useState(false);
+  const currentLevelIndex = useGame((s) => s.currentLevelIndex);
 
 
   // load audio based on scene
@@ -33,15 +34,38 @@ export function SceneManager() {
       case "level-1-review":
       case "level-2-review":
       case "level-3-review":
-      case "level-4-review":
-      case "win":
+      case "level-4-review": {
+        newAudioSrc = "/audio/music/menu.mp3";
+        break;
+      }
       case "lose1":
-      case "lose2":
-        newAudioSrc = "/audio/Menu_music.mp3";
+      case "lose2": {
+        newAudioSrc = "/audio/music/lose.mp3";
         break;
-      case "game":
-        newAudioSrc = "/audio/Level_1_music.mp3";
+      }
+      case "game": {
+        switch (currentLevelIndex) {
+          case 1:
+            newAudioSrc = "/audio/music/level-1.mp3";
+            break;
+          case 2:
+            newAudioSrc = "/audio/music/level-2.mp3";
+            break;
+          case 3:
+            newAudioSrc = "/audio/music/level-3.mp3";
+            break;
+          case 4:
+            newAudioSrc = "/audio/music/level-4.mp3";
+            break;
+          default:
+            newAudioSrc = "/audio/music/level-4.mp3";
+        }
         break;
+      }
+      case "win": {
+        // TODO: change to win music
+        newAudioSrc = "/audio/music/menu.mp3";
+      }
     }
 
     if (newAudioSrc === audioSrc) return; // keep playing
