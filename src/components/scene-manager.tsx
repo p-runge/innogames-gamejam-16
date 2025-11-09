@@ -4,6 +4,7 @@ import MenuScene from "../scenes/menu-scene";
 import StoryScene from "../scenes/story-scene";
 import { useGame } from "../stores/game";
 import { useScene, type SceneType } from "../stores/scene";
+import Reward from "./reward";
 
 export function SceneManager() {
   const currentScene = useScene((s) => s.currentScene);
@@ -169,6 +170,7 @@ const sceneMap: Record<SceneType, React.FC> = {
         "Now go and catch all the…ah wait, wrong universe, my bad. Well, i am hungry so hurry up. And dont fail this. Good Luck!"
       }
       nextScene="game"
+      content={<img src="/acid.png" className="w-48 h-48" />}
     />
   ),
   game: GameScene,
@@ -179,7 +181,7 @@ const sceneMap: Record<SceneType, React.FC> = {
         "You did it! These were your first successful steps on the ladder leading to a delicious Mettbrötchen. But be aware, there are many more dangers awaiting you.."
       }
       nextScene="game"
-      rewardImgSrc="/bread-roll.png"
+      content={<Reward imgSrc="/bread-roll.png" />}
     />
   ),
   "level-2-review": () => (
@@ -189,7 +191,7 @@ const sceneMap: Record<SceneType, React.FC> = {
         "Ah nice, you found the butter. Go, put it on your bread and move on. We have no time to lose."
       }
       nextScene="game"
-      rewardImgSrc="/butter.png"
+      content={<Reward imgSrc="/butter.png" />}
     />
   ),
   "level-3-review": () => (
@@ -199,7 +201,7 @@ const sceneMap: Record<SceneType, React.FC> = {
         "The heart of our dish. Ah, i love that smell. This is by far the most important ingredient, so make sure to have enough of it on your slice. But there is still one more important thing to add.."
       }
       nextScene="game"
-      rewardImgSrc="/mett.png"
+      content={<Reward imgSrc="/mett.png" />}
     />
   ),
   "level-4-review": () => (
@@ -207,7 +209,7 @@ const sceneMap: Record<SceneType, React.FC> = {
       imgSrc="/god-happy.png"
       dialog="Finally… You did it! Now it is time to earn your reward. Add those onions and then share some of these delicious Mettbrötchen with me. Your service will never be forgotten."
       nextScene="win"
-      rewardImgSrc="/onions.png"
+      content={<Reward imgSrc="/onions.png" />}
     />
   ),
   win: WinScene,
@@ -248,9 +250,19 @@ function WinScene() {
   return (
     <StoryScene
       imgSrc="/mett-gusta.png"
-      dialog="Thanks for playing!"
+      dialog=""
       nextScene="menu"
-      rewardImgSrc="/mettbroetchen.png"
+      content={
+        <div className="flex flex-col items-center gap-4">
+          <Reward imgSrc="/mettbroetchen.png" />
+          <img src="/acid.png" className="w-48 h-48" />
+          <div className="text-center">
+            <p className="text-xl font-bold">Thanks for playing!</p>
+            <p>A game for the Innogames Game Jam #16 in Nov '25</p>
+            <p>by Team METTelhead (Acid & Froxx)</p>
+          </div>
+        </div>
+      }
     />
   );
 }
