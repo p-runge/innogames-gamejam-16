@@ -6,6 +6,7 @@ type StorySceneProps = {
   imgSrc: string;
   dialog: string;
   nextScene: SceneType;
+  content?: React.ReactNode;
 };
 
 export default function StoryScene(props: StorySceneProps) {
@@ -36,7 +37,8 @@ export default function StoryScene(props: StorySceneProps) {
             <div className="absolute bottom-0 text-center w-full text-3xl translate-y-full font-bold text-[red] uppercase">Mett Gusta</div>
           )}
         </div>
-        <div className="text-xl grow">{props.dialog}</div>
+        <div className="text-xl">{props.dialog}</div>
+        {props.content}
       </div>
       <div className="text-center text-2xl font-bold absolute bottom-8 left-0 right-0 animate-bounce">
         {"Press <Space> to continue"}

@@ -141,6 +141,9 @@ const sceneMap: Record<SceneType, React.FC> = {
         "You did it! These were your first successful steps on the ladder leading to a delicious Mettbrötchen. But be aware, there are many more dangers awaiting you.."
       }
       nextScene="game"
+      content={
+        <img src="/bread-roll.png" className="w-48 h-48 animate-bounce" />
+      }
     />
   ),
   "level-2-review": () => (
@@ -150,6 +153,9 @@ const sceneMap: Record<SceneType, React.FC> = {
         "Ah nice, you found the butter. Go, put it on your bread and move on. We have no time to lose."
       }
       nextScene="game"
+      content={
+        <img src="/butter.png" className="w-48 h-48 animate-bounce" />
+      }
     />
   ),
   "level-3-review": () => (
@@ -159,6 +165,9 @@ const sceneMap: Record<SceneType, React.FC> = {
         "The heart of our dish. Ah, i love that smell. This is by far the most important ingredient, so make sure to have enough of it on your slice. But there is still one more important thing to add.."
       }
       nextScene="game"
+      content={
+        <img src="/mett.png" className="w-48 h-48 animate-bounce" />
+      }
     />
   ),
   win1: Win1Scene,
@@ -203,6 +212,9 @@ function Win1Scene() {
       imgSrc="/mett-gusta.png"
       dialog="Finally… You did it! Now it is time to earn your reward. Add those onions and then share some of these delicious Mettbrötchen with me. Your service will never be forgotten."
       nextScene="win2"
+      content={
+        <img src="/onions.png" className="w-48 h-48 animate-bounce" />
+      }
     />
   );
 }
