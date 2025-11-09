@@ -24,7 +24,7 @@ export default function GameScene() {
       return {
         z: - i * currentLevel.obstacleDistance +
           // offset before the first obstacle
-          - 4,
+          - 8,
         type: getRandomItem(["o-rock", "o-paper", "o-scissors"] as const),
       };
     });
@@ -39,7 +39,7 @@ export default function GameScene() {
       {/* <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} decay={0} intensity={Math.PI} /> */}
       <pointLight position={[0, 10, 5]} decay={0} intensity={Math.PI / 2} />
 
-      <Floor position={[0, -1, 1]} />
+      <Floor position={[0, -1, -1]} />
       <Player />
       <Map />
       {currentLevelIndex >= 2 && <MatchUI />}

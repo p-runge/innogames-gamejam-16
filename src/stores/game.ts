@@ -18,18 +18,18 @@ type LevelMetric = Record<number, Level>;
 
 export const LEVELS: LevelMetric = {
   1: {
-    obstacleDistance: 8,
+    obstacleDistance: 12,
     obstacleCount: 4,
     speed: 2,
     instructions: [
       {
         mapZ: 2,
-        text: "Break through the obstacles in your way by winning games of rock paper scissors! Failing a game means taking damage. So take care, you only have 3 lifes! Move around with \u2190 and \u2192.",
+        text: "See that big obstacle ahead of you? Break through it by winning a game of rock paper scissors! Choose the correct weapon from those right in front of you. Move around using \u2190 and \u2192.",
       },
     ],
   },
   2: {
-    obstacleDistance: 8,
+    obstacleDistance: 12,
     obstacleCount: 6,
     speed: 1.5,
     instructions: [
@@ -38,18 +38,18 @@ export const LEVELS: LevelMetric = {
         text: "Watch out! The rules might change from here on. Make sure to pay attention on what choice you need to make to get past the next obstacle.",
       },
       {
-        mapZ: 10,
+        mapZ: 14,
         text: "See how the rules have changed? Stay alert!",
       },
     ],
   },
   3: {
-    obstacleDistance: 8,
+    obstacleDistance: 12,
     obstacleCount: 10,
     speed: 2,
   },
   4: {
-    obstacleDistance: 8,
+    obstacleDistance: 12,
     obstacleCount: 12,
     speed: 2.5,
   },

@@ -36,7 +36,7 @@ export default function Map() {
 
     const newVisibleObstacles = obstacles.filter(obstacle => (
       // only show obstacles that are near the player
-      obstacle.z + newMapZ > -4 &&
+      obstacle.z + newMapZ > -8 &&
       // don't show obstacles that are out of view behind the player
       obstacle.z + newMapZ < 7
     ));
