@@ -1,12 +1,13 @@
 import { useEffect } from "react";
 import { useGame } from "../stores/game";
 import { useScene, type SceneType } from "../stores/scene";
+import Reward from "../components/reward";
 
 type StorySceneProps = {
   imgSrc: string;
   dialog: string;
   nextScene: SceneType;
-  content?: React.ReactNode;
+  rewardImgSrc?: string;
 };
 
 export default function StoryScene(props: StorySceneProps) {
@@ -38,7 +39,9 @@ export default function StoryScene(props: StorySceneProps) {
           )}
         </div>
         <div className="text-xl">{props.dialog}</div>
-        {props.content}
+        {props.rewardImgSrc && (
+          <Reward imgSrc={props.rewardImgSrc} />
+        )}
       </div>
       <div className="text-center text-2xl font-bold absolute bottom-8 left-0 right-0 animate-bounce">
         {"Press <Space> to continue"}
