@@ -6,6 +6,7 @@ export type SceneType =
   | "intro2"
   | "intro3"
   | "intro4"
+  | "intro5"
   | "game"
   | "level-1-review"
   | "level-2-review"

@@ -29,6 +29,7 @@ export function SceneManager() {
       case "intro2":
       case "intro3":
       case "intro4":
+      case "intro5":
       case "level-1-review":
       case "level-2-review":
       case "level-3-review":
@@ -101,34 +102,44 @@ const sceneMap: Record<SceneType, React.FC> = {
     <StoryScene
       imgSrc="/god-waving.png"
       dialog={
-        "Hey you. You`re finally awake. My name is Philipp and i want you to celebrate the most important day of the week with me - it is Mettwoch! All we need is some bread, butter, Mett and some onions. Let me just get some out of the kitchen…"
+        "Hey you. You`re finally awake. Today is the most important day of the week - It is Mettwoch! And I want you to celebrate it with me. All we need is some bread, butter, Mett and some onions. Let me just get some out of the kitchen…"
       }
-      nextScene="level-4-review"
+      nextScene="intro2"
     />
   ),
   intro2: () => (
     <StoryScene
       imgSrc="/god-sad.png"
       dialog={
-        "Oh me! Looks like i am completely out of ingredients. Well, due to i am just a hungry guy on a cloud i need you to collect them. It will be a dangerous and exhausting journey, and its not easy to find the right path through. But don`t worry, there is still a way i can help you out. Take this knife, it is able to crack up the magical barriers if you add the right element power to it. "
+        "Oh me! Looks like i am completely out of ingredients. Well, since i am just a hungry guy on a cloud i need you to collect them."
       }
       nextScene="intro3"
     />
   ),
   intro3: () => (
     <StoryScene
-      imgSrc="/god-talking.png"
+      imgSrc="/god-default.png"
       dialog={
-        "The ingredients are guarded by a maze - you have to find the right item ( ? ) to navigate safely through it. Watch out for the item that matches the color of the next obstacle. But there is one more outstanding issue - a higher power has decreed that logic is optional (irrational?) around those mazes. Color logic could switch at any time."
+        "It will be a dangerous and exhausting journey, and its not easy to find the right path through. But don't worry, there is still a way I can help you out. Take this knife, it is able to crack up the magical barriers if you add the right element power to it."
       }
       nextScene="intro4"
+    // rewardImgSrc="/knife.png"
     />
   ),
   intro4: () => (
     <StoryScene
+      imgSrc="/god-talking.png"
+      dialog={
+        "The ingredients are guarded by a maze - you have to find the right item ( ? ) to navigate safely through it. Watch out for the item that matches the color of the next obstacle. But there is one more outstanding issue - a higher power has decreed that logic is optional (irrational?) around those mazes. Color logic could switch at any time."
+      }
+      nextScene="intro5"
+    />
+  ),
+  intro5: () => (
+    <StoryScene
       imgSrc="/god-pointing.png"
       dialog={
-        "Now go and catch all the…ah wait, wrong universe, my bad. Well, i am hungry so hurry up. And dont fail this. Good Luck"
+        "Now go and catch all the…ah wait, wrong universe, my bad. Well, i am hungry so hurry up. And dont fail this. Good Luck!"
       }
       nextScene="game"
     />
