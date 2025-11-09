@@ -10,8 +10,8 @@ export type SceneType =
   | "level-1-review"
   | "level-2-review"
   | "level-3-review"
-  | "win1"
-  | "win2"
+  | "level-4-review"
+  | "win"
   | "lose1"
   | "lose2";
 

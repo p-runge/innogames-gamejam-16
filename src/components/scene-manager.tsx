@@ -29,13 +29,13 @@ export function SceneManager() {
       case "intro2":
       case "intro3":
       case "intro4":
-      case "win1":
-      case "win2":
-      case "lose1":
-      case "lose2":
       case "level-1-review":
       case "level-2-review":
       case "level-3-review":
+      case "level-4-review":
+      case "win":
+      case "lose1":
+      case "lose2":
         newAudioSrc = "/audio/Menu_music.mp3";
         break;
       case "game":
@@ -103,7 +103,7 @@ const sceneMap: Record<SceneType, React.FC> = {
       dialog={
         "Hey you. You`re finally awake. My name is Philipp and i want you to celebrate the most important day of the week with me - it is Mettwoch! All we need is some bread, butter, Mett and some onions. Let me just get some out of the kitchen…"
       }
-      nextScene="intro2"
+      nextScene="level-4-review"
     />
   ),
   intro2: () => (
@@ -164,9 +164,15 @@ const sceneMap: Record<SceneType, React.FC> = {
       rewardImgSrc="/mett.png"
     />
   ),
-  win1: Win1Scene,
-  win2: () => <StoryScene
-    imgSrc="/mett-gusta.png" dialog="Thanks for playing" nextScene="menu" />,
+  "level-4-review": () => (
+    <StoryScene
+      imgSrc="/god-happy.png"
+      dialog="Finally… You did it! Now it is time to earn your reward. Add those onions and then share some of these delicious Mettbrötchen with me. Your service will never be forgotten."
+      nextScene="win"
+      rewardImgSrc="/onions.png"
+    />
+  ),
+  win: WinScene,
   lose1: Lose1Scene,
   lose2: () => (
     <StoryScene
@@ -194,7 +200,7 @@ function Lose1Scene() {
   );
 }
 
-function Win1Scene() {
+function WinScene() {
   const resetGame = useGame((s) => s.resetGame);
 
   useEffect(() => {
@@ -204,9 +210,9 @@ function Win1Scene() {
   return (
     <StoryScene
       imgSrc="/mett-gusta.png"
-      dialog="Finally… You did it! Now it is time to earn your rewardImgSrc. Add those onions and then share some of these delicious Mettbrötchen with me. Your service will never be forgotten."
-      nextScene="win2"
-      rewardImgSrc="/onions.png"
+      dialog="Thanks for playing"
+      nextScene="menu"
+      rewardImgSrc="/mettbroetchen.png"
     />
   );
 }
