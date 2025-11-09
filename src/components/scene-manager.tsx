@@ -158,7 +158,7 @@ const sceneMap: Record<SceneType, React.FC> = {
     <StoryScene
       imgSrc="/god-talking.png"
       dialog={
-        "You have heard about rock paper scissors, right? You will need to play it to break through the obstacles on your way. Choose your weapon wisely, or there will be not Mett this week!"
+        "You have heard about rock paper scissors, right? You will need to play it to break through the obstacles on your way. Choose your weapon wisely, or there will be no Mett this week!"
       }
       nextScene="intro5"
     />
