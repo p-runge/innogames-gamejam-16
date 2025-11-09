@@ -30,12 +30,15 @@ export function SceneManager() {
       case "intro2":
       case "intro3":
       case "intro4":
-      case "intro5":
+      case "intro5": {
+        newAudioSrc = "/audio/music/menu.mp3";
+        break;
+      }
       case "level-1-review":
       case "level-2-review":
       case "level-3-review":
       case "level-4-review": {
-        newAudioSrc = "/audio/music/menu.mp3";
+        newAudioSrc = "/audio/music/level-review.mp3";
         break;
       }
       case "lose1":
