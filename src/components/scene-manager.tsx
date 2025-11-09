@@ -90,7 +90,7 @@ export function SceneManager() {
 
   return <>
     <audio ref={audioRef} loop>
-      <source src={audioSrc} type="audio/mpeg" />
+      {audioSrc && <source src={audioSrc} type="audio/mpeg" />}
     </audio>
     <Scene />
   </>;
