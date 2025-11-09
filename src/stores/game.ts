@@ -24,7 +24,7 @@ export const LEVELS: LevelMetric = {
     instructions: [
       {
         mapZ: 2,
-        text: "You need to break through the obstacles in your way by winning a game of rock paper scissors! Make the right choice to win. You can move around with \u2190 and \u2192.",
+        text: "Break through the obstacles in your way by winning games of rock paper scissors! Failing a game means taking damage. So take care, you only have 3 lifes! Move around with \u2190 and \u2192.",
       },
     ],
   },

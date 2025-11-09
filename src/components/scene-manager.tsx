@@ -144,7 +144,7 @@ const sceneMap: Record<SceneType, React.FC> = {
     <StoryScene
       imgSrc="/god-default.png"
       dialog={
-        "It will be a dangerous and exhausting journey, and its not easy to find the right path through. But don't worry, there is still a way I can help you out. Take this knife, it is able to crack up the magical barriers if you add the right element power to it."
+        "It will be a dangerous and exhausting journey, and its not easy to find the right path through. But don't worry, I'm positive you'll make it through!"
       }
       nextScene="intro4"
     // rewardImgSrc="/knife.png"
@@ -154,7 +154,7 @@ const sceneMap: Record<SceneType, React.FC> = {
     <StoryScene
       imgSrc="/god-talking.png"
       dialog={
-        "The ingredients are guarded by a maze - you have to find the right item ( ? ) to navigate safely through it. Watch out for the item that matches the color of the next obstacle. But there is one more outstanding issue - a higher power has decreed that logic is optional (irrational?) around those mazes. Color logic could switch at any time."
+        "You have heard about rock paper scissors, right? You will need to play it to break through the obstacles on your way. Choose your weapon wisely, or there will be not Mett this week!"
       }
       nextScene="intro5"
     />
@@ -245,7 +245,7 @@ function WinScene() {
   return (
     <StoryScene
       imgSrc="/mett-gusta.png"
-      dialog="Thanks for playing"
+      dialog="Thanks for playing!"
       nextScene="menu"
       rewardImgSrc="/mettbroetchen.png"
     />
