@@ -73,7 +73,7 @@ export default function God() {
 
   return (
     <>
-      <Html position={[0, 4, 0]} center>
+      <Html zIndexRange={[0]} position={[0, 4, 0]} center>
         <div className="w-64">
           <img src={imageSrc} className="w-full" />
         </div>
