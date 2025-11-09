@@ -136,7 +136,7 @@ const sceneMap: Record<SceneType, React.FC> = {
   game: GameScene,
   "level-1-review": () => (
     <StoryScene
-      imgSrc=""
+      imgSrc="/god-happy.png"
       dialog={
         "You did it! These were your first successful steps on the ladder leading to a delicious Mettbrötchen. But be aware, there are many more dangers awaiting you.."
       }
@@ -145,7 +145,7 @@ const sceneMap: Record<SceneType, React.FC> = {
   ),
   "level-2-review": () => (
     <StoryScene
-      imgSrc=""
+      imgSrc="/god-happy.png"
       dialog={
         "Ah nice, you found the butter. Go, put it on your bread and move on. We have no time to lose."
       }
@@ -154,7 +154,7 @@ const sceneMap: Record<SceneType, React.FC> = {
   ),
   "level-3-review": () => (
     <StoryScene
-      imgSrc=""
+      imgSrc="/god-happy.png"
       dialog={
         "The heart of our dish. Ah, i love that smell. This is by far the most important ingredient, so make sure to have enough of it on your slice. But there is still one more important thing to add.."
       }
